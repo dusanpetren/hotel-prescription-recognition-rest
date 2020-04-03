@@ -20,10 +20,10 @@ public class HotelPrescriptionRecognitionApplication {
 		return args -> {
 			prescriptionRepository
 					.deleteAll();
-			Stream.of(new PrescriptionEntity(UUID.randomUUID().toString(), "Peter", new Date()),
-					new PrescriptionEntity(UUID.randomUUID().toString(), "Martin", new Date()),
-					new PrescriptionEntity(UUID.randomUUID().toString(), "Sam", new Date()),
-					new PrescriptionEntity(UUID.randomUUID().toString(), "Alex", new Date()))
+			Stream.of(new PrescriptionEntity(UUID.randomUUID().toString(), "aaa","ABCD3456", new Date()),
+					new PrescriptionEntity(UUID.randomUUID().toString(), "bbb","ABCD2345" ,new Date()),
+					new PrescriptionEntity(UUID.randomUUID().toString(), "ccc","ABCD1234", new Date()),
+					new PrescriptionEntity(UUID.randomUUID().toString(), "ddd","ABCD4567", new Date()))
 					.forEach(prescriptionRepository::save);
 		};
 	}

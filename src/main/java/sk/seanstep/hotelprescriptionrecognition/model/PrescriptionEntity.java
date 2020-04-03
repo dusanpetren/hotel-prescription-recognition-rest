@@ -23,5 +23,6 @@ public class PrescriptionEntity {
 	@Id
 	private String id;
 	private String code;
+	private String prescriptionId;
 	private Date created_at;
 }
