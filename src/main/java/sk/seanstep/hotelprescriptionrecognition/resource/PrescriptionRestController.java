@@ -39,7 +39,7 @@ public class PrescriptionRestController {
 		return ResponseEntity.ok(prescriptionRepository.findAllByCode(codeId));
 	}
 
-	@MessageMapping("/ws")
+	@MessageMapping("/ws/add")
 	@SendTo("/topic/greetings")
 	public ResponseEntity<PrescriptionEntity> add() {
 		log.info("Creating new Prescription with code:" + "code");
