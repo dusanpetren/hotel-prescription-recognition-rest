@@ -22,7 +22,7 @@ public class WSMessagegController {
 	private PrescriptionRepository prescriptionRepository;
 
 	@MessageMapping("/add")
-	@SendTo("/prescription/queue")
+	@SendTo("/queue/prescription")
 	public PrescriptionEntity add(String code) throws Exception {
 		log.info("Creating new Prescription with code:" + code);
 		return prescriptionRepository.save(new PrescriptionEntity(null, code, null, null));

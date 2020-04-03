@@ -36,11 +36,4 @@ public class PrescriptionRestController {
 		log.info("Getting all prescription for code:" + codeId);
 		return ResponseEntity.ok(prescriptionRepository.findAllByCode(codeId));
 	}
-
-//	@MessageMapping("/ws/add")
-//	@SendTo("/topic/greetings")
-//	public ResponseEntity<PrescriptionEntity> add() {
-//		log.info("Creating new Prescription with code:" + "code");
-//		return ResponseEntity.ok(prescriptionRepository.save(new PrescriptionEntity(null, "code", null, null)));
-//	}
 }
