@@ -5,7 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.UUID;
 import java.util.stream.Stream;
