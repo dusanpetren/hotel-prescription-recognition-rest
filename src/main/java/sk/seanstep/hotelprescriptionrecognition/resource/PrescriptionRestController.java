@@ -41,8 +41,8 @@ public class PrescriptionRestController {
 
 	@MessageMapping("/ws")
 	@SendTo("/topic/greetings")
-	public ResponseEntity<PrescriptionEntity> add(@PathVariable String code) {
-		log.info("Creating new Prescription with code:" + code);
-		return ResponseEntity.ok(prescriptionRepository.save(new PrescriptionEntity(null, code, null, null)));
+	public ResponseEntity<PrescriptionEntity> add() {
+		log.info("Creating new Prescription with code:" + "code");
+		return ResponseEntity.ok(prescriptionRepository.save(new PrescriptionEntity(null, "code", null, null)));
 	}
 }
