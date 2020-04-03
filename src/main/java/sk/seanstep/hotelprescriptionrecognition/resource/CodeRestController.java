@@ -1,5 +1,6 @@
 package sk.seanstep.hotelprescriptionrecognition.resource;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +23,9 @@ public class CodeRestController {
 	private CodeGeneratorService codeGeneratorService;
 
 	@GetMapping("/generate")
-	public String generate() {
+	public ResponseEntity<String> generate() {
 		final String code = codeGeneratorService.generate();
 		log.info("Generated new UUID: " + code);
-		return code;
+		return ResponseEntity.ok(code);
 	}
 }
