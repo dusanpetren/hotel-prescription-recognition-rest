@@ -34,13 +34,13 @@ public class PrescriptionRestController {
 	}
 
 	@GetMapping("/{codeId}")
-	@SendTo("/topic/greetings")
 	public ResponseEntity<List<PrescriptionEntity>> getAllForCodeId(@PathVariable String codeId) {
 		log.info("Getting all prescription for code:" + codeId);
 		return ResponseEntity.ok(prescriptionRepository.findAllByCode(codeId));
 	}
 
 	@MessageMapping("/add")
+	@SendTo("/topic/greetings")
 	public ResponseEntity<PrescriptionEntity> add(@PathVariable String code) {
 		log.info("Creating new Prescription with code:" + code);
 		return ResponseEntity.ok(prescriptionRepository.save(new PrescriptionEntity(null, code, null, null)));
