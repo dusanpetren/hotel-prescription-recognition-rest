@@ -1,8 +1,6 @@
 package sk.seanstep.hotelprescriptionrecognition.resource;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,10 +37,10 @@ public class PrescriptionRestController {
 		return ResponseEntity.ok(prescriptionRepository.findAllByCode(codeId));
 	}
 
-	@MessageMapping("/ws/add")
-	@SendTo("/topic/greetings")
-	public ResponseEntity<PrescriptionEntity> add() {
-		log.info("Creating new Prescription with code:" + "code");
-		return ResponseEntity.ok(prescriptionRepository.save(new PrescriptionEntity(null, "code", null, null)));
-	}
+//	@MessageMapping("/ws/add")
+//	@SendTo("/topic/greetings")
+//	public ResponseEntity<PrescriptionEntity> add() {
+//		log.info("Creating new Prescription with code:" + "code");
+//		return ResponseEntity.ok(prescriptionRepository.save(new PrescriptionEntity(null, "code", null, null)));
+//	}
 }
