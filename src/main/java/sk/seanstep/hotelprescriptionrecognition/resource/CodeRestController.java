@@ -10,7 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import sk.seanstep.hotelprescriptionrecognition.service.CodeGeneratorService;
 
 /**
- * Rest Controller for Codes manipulation
+ * Rest Controller for Codes manipulation.
  *
  * @author dusan.petren
  */
@@ -28,4 +28,5 @@ public class CodeRestController {
 		log.info("Generated new UUID: " + code);
 		return ResponseEntity.ok(code);
 	}
+
 }

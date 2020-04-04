@@ -1,11 +1,17 @@
 package sk.seanstep.hotelprescriptionrecognition.resource;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import sk.seanstep.hotelprescriptionrecognition.google.api.GoogleVisionService;
+import sk.seanstep.hotelprescriptionrecognition.google.data.GoogleCodeRequest;
 import sk.seanstep.hotelprescriptionrecognition.model.PrescriptionEntity;
 import sk.seanstep.hotelprescriptionrecognition.repository.PrescriptionRepository;
 
@@ -20,12 +26,23 @@ import sk.seanstep.hotelprescriptionrecognition.repository.PrescriptionRepositor
 public class WSMessageController {
 
 	private PrescriptionRepository prescriptionRepository;
+	private GoogleVisionService googleVisionService;
 
+	// TODO: 4/4/2020 petrend Add unique websocket mapping to specific users...
 	@MessageMapping("/add")
 	@SendTo("/queue/prescription")
-	public PrescriptionEntity add(String code) throws Exception {
+	public PrescriptionEntity add(@NotNull String code) throws Exception {
 		log.info("Creating new Prescription with code:" + code);
 		return prescriptionRepository.save(new PrescriptionEntity(null, code, null, null));
+	}
+
+	// TODO: 4/4/2020 petrend Add unique websocket mapping to specific users...@destination variable
+	@MessageMapping("/resolve")
+	@SendTo("/queue/prescription")
+	public ResponseEntity<String> generate(@NotNull @RequestBody GoogleCodeRequest encodedImage) {
+		log.info("Accepted encoded picture.");
+//		googleVisionService.
+		return ResponseEntity.ok("code");
 	}
 
 }
