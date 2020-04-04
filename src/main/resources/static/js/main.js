@@ -17,7 +17,7 @@ function connect() {
     stompClient.connect({}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/prescription/queue', function (greeting) {
+        stompClient.subscribe('/socket/prescription', function (greeting) {
             console.log("greeting;" + greeting);
             showGreeting(greeting.body);
         });
@@ -40,15 +40,18 @@ function disconnect() {
     console.log("Disconnected");
 }
 
+// function sendName() {
+//     stompClient.send("/api/add/", {}, JSON.stringify({'name': $("#name").val()}));
+// }
 function sendName() {
-    stompClient.send("/app/add/kk", {}, JSON.stringify({'name': $("#name").val()}));
+    stompClient.send("/api/add/", $("#name").val());
 }
 
 function generateCode() {
     $.ajax({
-        url : '/code/generate',
-        type : 'GET',
-        success : function(response) {
+        url: '/code/generate',
+        type: 'GET',
+        success: function (response) {
             console.log("generated Id: " + response);
             redirectToGeneratedId(response);
         },

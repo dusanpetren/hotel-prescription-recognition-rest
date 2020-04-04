@@ -30,7 +30,7 @@ public class WSMessageController {
 
 	// TODO: 4/4/2020 petrend Add unique websocket mapping to specific users...
 	@MessageMapping("/add")
-	@SendTo("/queue/prescription")
+	@SendTo("/socket/prescription")
 	public PrescriptionEntity add(@NotNull String code) throws Exception {
 		log.info("Creating new Prescription with code:" + code);
 		return prescriptionRepository.save(new PrescriptionEntity(null, code, null, null));
@@ -38,7 +38,7 @@ public class WSMessageController {
 
 	// TODO: 4/4/2020 petrend Add unique websocket mapping to specific users...@destination variable
 	@MessageMapping("/resolve")
-	@SendTo("/queue/prescription")
+	@SendTo("/socket/prescription")
 	public ResponseEntity<String> generate(@NotNull @RequestBody GoogleCodeRequest encodedImage) {
 		log.info("Accepted encoded picture.");
 //		googleVisionService.
