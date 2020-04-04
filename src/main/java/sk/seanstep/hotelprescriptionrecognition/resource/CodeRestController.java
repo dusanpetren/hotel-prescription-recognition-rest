@@ -24,6 +24,7 @@ public class CodeRestController {
 
 	@GetMapping("/generate")
 	public ResponseEntity<String> generate() {
+
 		final String code = codeGeneratorService.generate();
 		log.info("Generated new UUID: " + code);
 		return ResponseEntity.ok(code);
