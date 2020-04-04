@@ -17,7 +17,7 @@ import sk.seanstep.hotelprescriptionrecognition.repository.PrescriptionRepositor
 @Log4j2
 @Controller
 @AllArgsConstructor
-public class WSMessagegController {
+public class WSMessageController {
 
 	private PrescriptionRepository prescriptionRepository;
 
