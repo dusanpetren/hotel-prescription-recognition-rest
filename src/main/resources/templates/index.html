@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<header>
+    <div class="container d-flex h-100 align-items-center">
+        <div class="mx-auto text-center">
+            <h1 class="mx-auto my-0 text-uppercase">Prescription reader</h1>
+            <h2 class="text-white-50 mx-auto mt-2 mb-5">Prescription reader for Pharmacies</h2>
+            <form action="/" th:action="@{/generate}" method="get">
+                <button class="btn btn-primary text-center">Generate code</button>
+            </form>
+            <form action="/" th:action="@{/join}" method="get">
+                <input type="text" th:value="${id}" name="id" id="id" class="form-control"
+                       placeholder="Your name here...">
+                <button class="btn btn-primary text-center">Join</button>
+            </form>
+        </div>
+    </div>
+</header>
+</body>
