@@ -44,6 +44,24 @@ function sendName() {
     stompClient.send("/app/add/kk", {}, JSON.stringify({'name': $("#name").val()}));
 }
 
+function generateCode() {
+    $.ajax({
+        url : '/code/generate',
+        type : 'GET',
+        success : function(response) {
+            console.log("generated Id: " + response);
+            redirectToGeneratedId(response);
+        },
+        error : function(request, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+}
+
+function redirectToGeneratedId(generatedId) {
+    window.location.href = "/web/code/" + generatedId;
+}
+
 function showGreeting(message) {
     $("#greetings").append("<tr><td>" + message + "</td></tr>");
 }
