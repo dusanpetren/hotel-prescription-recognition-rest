@@ -1,4 +1,5 @@
 var stompClient = null;
+var latestGeneratedCode = null;
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -54,8 +55,9 @@ $( document ).ready(function() {
         url: '/code/generate',
         type: 'GET',
         success: function (response) {
-            console.log("generated Id: " + response);
-            $('#qrcode').qrcode(response);
+            latestGeneratedCode = response;
+            console.log("generated Id: " + latestGeneratedCode);
+            $('#qrcode').qrcode(latestGeneratedCode);
             var canvas = $('#qrcode canvas');
             console.log(canvas);
         },
@@ -70,9 +72,10 @@ function generateCode() {
         url: '/code/generate',
         type: 'GET',
         success: function (response) {
+            latestGeneratedCode = response;
             $( "canvas").get( 0 ).remove();
-            $('#qrcode').qrcode(response);
-            console.log("generated Id: " + response);
+            $('#qrcode').qrcode(latestGeneratedCode);
+            console.log("generated Id: " + latestGeneratedCode);
             return response;
         },
         error : function(request, textStatus, errorThrown) {
@@ -80,24 +83,24 @@ function generateCode() {
         }
     });
 }
+//
+// function goToLatest() {
+//     $.ajax({
+//         url: '/code/generate',
+//         type: 'GET',
+//         success: function (response) {
+//             console.log("generated Id: " + response);
+//             redirectToGeneratedId();
+//         },
+//         error : function(request, textStatus, errorThrown) {
+//             alert(errorThrown);
+//         }
+//     });
+// }
 
-function generateCodeAndGo() {
-    $.ajax({
-        url: '/code/generate',
-        type: 'GET',
-        success: function (response) {
-            console.log("generated Id: " + response);
-            redirectToGeneratedId(response);
-        },
-        error : function(request, textStatus, errorThrown) {
-            alert(errorThrown);
-        }
-    });
-}
-
-function redirectToGeneratedId(generatedId) {
-    console.log("ggoing to space: " + generatedId);
-    window.location.href = "/web/code/" + generatedId;
+function redirectToGeneratedId() {
+    console.log("ggoing to space: " + latestGeneratedCode);
+    window.location.href = "/web/code/" + latestGeneratedCode;
 }
 
 function showGreeting(message) {

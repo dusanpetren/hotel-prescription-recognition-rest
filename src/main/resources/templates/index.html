@@ -30,7 +30,7 @@
             <form action="/" th:action="@{/join}" method="get">
                 <input type="text" th:value="${id}" name="id" id="id" class="form-control"
                        placeholder="Your name here...">
-                <button class="btn btn-primary text-center">Join</button>
+                <button onclick="redirectToGeneratedId()" class="btn btn-primary text-center">Join</button>
             </form>
         </div>
         <input id="single2" type="text" size="50">
