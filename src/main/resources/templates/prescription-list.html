@@ -95,10 +95,11 @@
             const reader = new FileReader();
             var src = reader.result;
             base64 = base64.replace("data:image/png;base64,", "");
+            console.log("base64 after cut: " + base64);
                 $.ajax({
                     url: '/prescription/add',
                     type: 'POST',
-                    body:  JSON.stringify({'imageBase64': base64}),
+                    body: "{\"imageBase64\":\"" + base64 + "\"}", // JSON.stringify({'imageBase64': base64}),
                     contentType: 'application/json',
                     success: function (response) {
                         $("p").append(response);
