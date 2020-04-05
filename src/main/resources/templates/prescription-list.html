@@ -99,12 +99,12 @@
                 $.ajax({
                     url: '/prescription/add',
                     type: 'POST',
-                    body: "{\"imageBase64\":\"" + base64 + "\"}", // JSON.stringify({'imageBase64': base64}),
+                    data: "{\"imageBase64\":\"" + base64 + "\"}", // JSON.stringify({'imageBase64': base64}),
                     contentType: 'application/json',
                     success: function (response) {
                         $("p").append(response);
                     },
-                    error : function(request, textStatus, errorThrown) {
+                    error: function (request, textStatus, errorThrown) {
                         alert(errorThrown);
                     }
                 });
