@@ -94,6 +94,7 @@ function generateCodeAndGo() {
 }
 
 function redirectToGeneratedId(generatedId) {
+    console.log("ggoing to space: " + generatedId);
     window.location.href = "/web/code/" + generatedId;
 }
 

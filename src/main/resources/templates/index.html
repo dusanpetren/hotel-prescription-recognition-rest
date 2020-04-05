@@ -36,19 +36,19 @@
         </div>
     </div>
 </header>
-<script src="../js/qrcode-reader-master/dist/js/qrcode-reader.min.js?v=20190604"></script>
-<script>
-    $(function() {
+    <script src="../js/qrcode-reader-master/dist/js/qrcode-reader.min.js?v=20190604"></script>
+    <script>
+        $(function() {
             $.qrCodeReader.jsQRpath = "../js/qrcode-reader-master/dist/js/jsQR/jsQR.js";
             $("#openreader-btn").qrCodeReader({
-            target: "#target-input",
-            audioFeedback: false,
-            multiple: true,
-            skipDuplicates: false,
-            callback: function (codes) {
-            console.log(codes);
-            }
+                target: "#target-input",
+                audioFeedback: false,
+                multiple: true,
+                skipDuplicates: false,
+                callback: function (codes) {
+                    redirectToGeneratedId(codes);
+                }
             });
-            });
+        });
     </script>
 </body>
