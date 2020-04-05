@@ -49,12 +49,15 @@ function sendName() {
 }
 
 $( document ).ready(function() {
+
     $.ajax({
         url: '/code/generate',
         type: 'GET',
         success: function (response) {
             console.log("generated Id: " + response);
             $('#qrcode').qrcode(response);
+            var canvas = $('#qrcode canvas');
+            console.log(canvas);
         },
         error: function (request, textStatus, errorThrown) {
             alert(errorThrown);
@@ -75,6 +78,19 @@ function generateCode() {
         }
     });
 }
+$(function() {
+    $.qrCodeReader.jsQRpath = "/qrcode-reader-master/dist/js/jsQR/jsQR.js";
+    $("#openreader-btn").qrCodeReader({
+        target: "#target-input",
+        audioFeedback: false,
+        multiple: true,
+        skipDuplicates: false,
+        callback: function (codes) {
+            console.log(codes);
+        }
+    })
+});
+
 
 function generateCodeAndGo() {
     $.ajax({

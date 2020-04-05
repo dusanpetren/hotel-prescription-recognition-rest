@@ -10,6 +10,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/qrcode-reader-master/dist/js/jsQR/jsQR.js"></script>
+    <script src="../js/qrcode-reader-master/dist/js/qrcode-reader.min.js?v=20190604"></script>
 </head>
 <body>
 <header>
@@ -19,12 +21,12 @@
             <h2 class="text-white-50 mx-auto mt-2 mb-5">Prescription reader for Pharmacies</h2>
             <form action="" method="get">
                 <button onclick="generateCodeAndGo()" class="btn btn-primary text-center">Generate code</button>
+
                 <input type="file" accept="image/*" capture="camera" />
             </form>
 
-<!--            <input id="text" type="text" value="https://hogangnono.com" style="width:80%" /><br />-->
             <div id="qrcode"></div>
-
+            <input type="button" id="openreader-btn" value="Scan QRCode"/>
 
             <form action="/" th:action="@{/join}" method="get">
                 <input type="text" th:value="${id}" name="id" id="id" class="form-control"
