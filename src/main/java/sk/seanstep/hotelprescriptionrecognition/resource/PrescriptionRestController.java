@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,7 @@ import lombok.extern.log4j.Log4j2;
 import sk.seanstep.hotelprescriptionrecognition.google.api.GoogleVisionService;
 import sk.seanstep.hotelprescriptionrecognition.model.PrescriptionEntity;
 import sk.seanstep.hotelprescriptionrecognition.repository.PrescriptionRepository;
+import sk.seanstep.hotelprescriptionrecognition.resource.data.request.AddPrescriptionRequest;
 
 /**
  * Rest Controller for Prescription manipulation.
@@ -40,9 +42,9 @@ public class PrescriptionRestController {
 		return ResponseEntity.ok(prescriptionRepository.findAllByCode(codeId));
 	}
 
-	@PostMapping("/add/{imageBase64}")
-	public String recognizeImage(@PathVariable String imageBase64) {
+	@PostMapping("/add")
+	public String recognizeImage(@RequestBody AddPrescriptionRequest addPrescriptionRequest) {
 		log.info("Sending image to recognition.");
-		return this.googleVisionService.sendToRecognition(imageBase64);
+		return this.googleVisionService.sendToRecognition(addPrescriptionRequest.getImageBase64());
 	}
 }
