@@ -12,7 +12,6 @@
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-    <script src="/js/main.js"></script>
 </head>
 <body>
 
@@ -59,6 +58,33 @@
             </table>
         </div>
     </div>
+    <div>
+        <p>Access the camera and scan the prescription
+            <input id="handWriting" type="file" accept="image/*" capture="camera" />
+            <button onclick="generateBase64fromImage()">Send picture</button>
+    </div>
+
+    <script>
+        function generateBase64fromImage() {
+            function toDataURL(url, callback) {
+                var xhr = new XMLHttpRequest();
+                xhr.onload = function() {
+                    var reader = new FileReader();
+                    reader.onloadend = function() {
+                        callback(reader.result);
+                    }
+                    reader.readAsDataURL(xhr.response);
+                };
+                xhr.open('GET', url);
+                xhr.responseType = 'blob';
+                xhr.send();
+            }
+
+            toDataURL(document.getElementById("handWriting"), function(dataUrl) {
+                console.log('RESULT:', dataUrl)
+            })
+        }
+    </script>
 
 </div>
 </body>

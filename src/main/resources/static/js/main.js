@@ -83,20 +83,26 @@ function generateCode() {
         }
     });
 }
-//
-// function goToLatest() {
-//     $.ajax({
-//         url: '/code/generate',
-//         type: 'GET',
-//         success: function (response) {
-//             console.log("generated Id: " + response);
-//             redirectToGeneratedId();
-//         },
-//         error : function(request, textStatus, errorThrown) {
-//             alert(errorThrown);
-//         }
-//     });
-// }
+
+function generateBase64fromImage() {
+    function toDataURL(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+            var reader = new FileReader();
+            reader.onloadend = function() {
+                callback(reader.result);
+            }
+            reader.readAsDataURL(xhr.response);
+        };
+        xhr.open('GET', url);
+        xhr.responseType = 'blob';
+        xhr.send();
+    }
+
+    toDataURL('../img/hotelHandWriting', function(dataUrl) {
+        console.log('RESULT:', dataUrl)
+    })
+}
 
 function redirectToGeneratedId() {
     console.log("ggoing to space: " + latestGeneratedCode);
