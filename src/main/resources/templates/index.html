@@ -8,8 +8,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
-    <script src="../js/main.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <script src="/js/main.js"></script>
 </head>
 <body>
 <header>
@@ -17,17 +17,43 @@
         <div class="mx-auto text-center">
             <h1 class="mx-auto my-0 text-uppercase">Prescription reader</h1>
             <h2 class="text-white-50 mx-auto mt-2 mb-5">Prescription reader for Pharmacies</h2>
+            <div>
+                <input id="single2" type="text" size="10">
+                <button type="button" id="openreader-single2"
+                        data-qrr-target="#single2"
+                        data-qrr-audio-feedback="false">Read or follow QRCode</button>
+            </div>
             <form action="" method="get">
                 <button onclick="generateCode()" class="btn btn-primary text-center">Generate code</button>
-                <input type="file" accept="image/*" capture="camera" />
             </form>
+
+            <div id="qrcode"></div>
+
 
             <form action="/" th:action="@{/join}" method="get">
                 <input type="text" th:value="${id}" name="id" id="id" class="form-control"
                        placeholder="Your name here...">
-                <button class="btn btn-primary text-center">Join</button>
+                <button onclick="redirectToGeneratedId()" class="btn btn-primary text-center">Join</button>
             </form>
         </div>
+
     </div>
 </header>
+    <script src="../js/qrcode-reader-master/dist/js/qrcode-reader.min.js?v=20190604"></script>
+    <script>
+        // read or follow qrcode depending on the content of the target input
+        $.qrCodeReader.jsQRpath = "../js/qrcode-reader-master/dist/js/jsQR/jsQR.js";
+        $("#openreader-single2").qrCodeReader({callback: function(code) {
+                if (code) {
+                    window.location.href = "/web/code/" + code;
+                }
+            }}).off("click.qrCodeReader").on("click", function(){
+            var qrcode = $("#single2").val().trim();
+            if (qrcode) {
+                window.location.href = qrcode;
+            } else {
+                $.qrCodeReader.instance.open.call(this);
+            }
+        });
+    </script>
 </body>
