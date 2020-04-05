@@ -84,13 +84,14 @@
             }
 
             toDataURL(document.getElementById("handWriting").src, function(dataUrl) {
-                console.log('RESULT:', dataUrl);
+                var newBase64 = dataUrl.replace("data:text/html;base64,", "");
+                console.log('RESULT:', newBase64);
                 console.log('element we getting from picc should it be: ', (document.getElementById("handWriting").src));
-                console.log('json stringify: ', JSON.stringify({'imageBase64': dataUrl}));
+                console.log('json stringify: ', JSON.stringify({'imageBase64': newBase64}));
                 $.ajax({
                     url: '/prescription/add',
                     type: 'POST',
-                    body:  '{\"imageBase64\":\"' + dataUrl + '\"}',
+                    body:  JSON.stringify({'imageBase64': newBase64}),
                     contentType: 'application/json; charset=utf-8',
                     success: function (response) {
                         $("p").append(response);
