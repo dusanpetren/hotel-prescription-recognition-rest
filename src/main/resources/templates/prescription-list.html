@@ -89,7 +89,9 @@
                     url: '/prescription/add',
                     type: 'POST',
                     body:  JSON.stringify({'imageBase64': dataUrl}),
+                    contentType: 'application/json; charset=utf-8',
                     success: function (response) {
+
                         $("p").append(response);
                     },
                     error : function(request, textStatus, errorThrown) {
