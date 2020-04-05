@@ -85,7 +85,7 @@
 
             toDataURL(document.getElementById("handWriting").src, function(dataUrl) {
                 console.log('RESULT:', dataUrl);
-                console.log('element we getting from picc should it be: ', (document.getElementById("handWriting").src()));
+                console.log('element we getting from picc should it be: ', (document.getElementById("handWriting").src));
                 console.log('json stringify: ', JSON.stringify({'imageBase64': dataUrl}));
                 $.ajax({
                     url: '/prescription/add',
