@@ -83,7 +83,7 @@
                 xhr.send();
             }
 
-            toDataURL(document.getElementById("handWriting").get(), function(dataUrl) {
+            toDataURL(document.getElementById("handWriting").src, function(dataUrl) {
                 console.log('RESULT:', dataUrl);
                 console.log('element we getting from picc should it be: ', (document.getElementById("handWriting").get()));
                 console.log('json stringify: ', JSON.stringify({'imageBase64': dataUrl}));
