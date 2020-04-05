@@ -78,19 +78,6 @@ function generateCode() {
         }
     });
 }
-$(function() {
-    $.qrCodeReader.jsQRpath = "/qrcode-reader-master/dist/js/jsQR/jsQR.js";
-    $("#openreader-btn").qrCodeReader({
-        target: "#target-input",
-        audioFeedback: false,
-        multiple: true,
-        skipDuplicates: false,
-        callback: function (codes) {
-            console.log(codes);
-        }
-    })
-});
-
 
 function generateCodeAndGo() {
     $.ajax({
