@@ -1,5 +1,5 @@
 
-package sk.seanstep.hotelprescriptionrecognition.google.response;
+package sk.seanstep.hotelprescriptionrecognition.google.data.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -1,5 +1,5 @@
 
-package sk.seanstep.hotelprescriptionrecognition.google.response;
+package sk.seanstep.hotelprescriptionrecognition.google.data.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,11 +11,11 @@ import lombok.Data;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-		"detectedLanguages"
+		"vertices"
 })
-public class Property {
+public class BoundingPoly {
 
-	@JsonProperty("detectedLanguages")
-	private List<DetectedLanguage> detectedLanguages = null;
+	@JsonProperty("vertices")
+	private List<Vertex> vertices = null;
 
 }

@@ -1,21 +1,23 @@
 
-package sk.seanstep.hotelprescriptionrecognition.google.response;
+package sk.seanstep.hotelprescriptionrecognition.google.data.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import java.util.List;
 import lombok.Data;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-		"responses"
+		"x",
+		"y"
 })
-public class GoogleVisionResponse {
+public class Vertex {
 
-	@JsonProperty("responses")
-	private List<Response> responses = null;
+	@JsonProperty("x")
+	private Integer x;
+	@JsonProperty("y")
+	private Integer y;
 
 }

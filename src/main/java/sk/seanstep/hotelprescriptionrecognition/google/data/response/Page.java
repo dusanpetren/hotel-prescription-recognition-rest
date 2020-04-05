@@ -1,5 +1,5 @@
 
-package sk.seanstep.hotelprescriptionrecognition.google.response;
+package sk.seanstep.hotelprescriptionrecognition.google.data.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,16 +12,19 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
 		"property",
-		"boundingBox",
-		"words"
+		"width",
+		"height",
+		"blocks"
 })
-public class Paragraph {
+public class Page {
 
 	@JsonProperty("property")
 	private Property property;
-	@JsonProperty("boundingBox")
-	private BoundingBox boundingBox;
-	@JsonProperty("words")
-	private List<Word> words = null;
+	@JsonProperty("width")
+	private Integer width;
+	@JsonProperty("height")
+	private Integer height;
+	@JsonProperty("blocks")
+	private List<Block> blocks = null;
 
 }
