@@ -1,23 +1,24 @@
 
-package sk.seanstep.hotelprescriptionrecognition.google.response;
+package sk.seanstep.hotelprescriptionrecognition.google.data.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.util.List;
 import lombok.Data;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-		"languageCode",
-		"confidence"
+		"pages",
+		"text"
 })
-public class DetectedLanguage {
+public class FullTextAnnotation {
 
-	@JsonProperty("languageCode")
-	private String languageCode;
-	@JsonProperty("confidence")
-	private Integer confidence;
+	@JsonProperty("pages")
+	private List<Page> pages = null;
+	@JsonProperty("text")
+	private String text;
 
 }

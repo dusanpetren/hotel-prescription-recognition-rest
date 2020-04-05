@@ -1,5 +1,5 @@
 
-package sk.seanstep.hotelprescriptionrecognition.google.response;
+package sk.seanstep.hotelprescriptionrecognition.google.data.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,12 +10,14 @@ import lombok.Data;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-		"type"
+		"languageCode",
+		"confidence"
 })
-public class DetectedBreak {
+public class DetectedLanguage {
 
-	@JsonProperty("type")
-	private String type;
-
+	@JsonProperty("languageCode")
+	private String languageCode;
+	@JsonProperty("confidence")
+	private Integer confidence;
 
 }

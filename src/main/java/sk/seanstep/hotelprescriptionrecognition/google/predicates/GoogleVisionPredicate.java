@@ -1,8 +1,8 @@
 package sk.seanstep.hotelprescriptionrecognition.google.predicates;
 
 import java.util.function.Predicate;
-import sk.seanstep.hotelprescriptionrecognition.google.response.GoogleVisionResponse;
-import sk.seanstep.hotelprescriptionrecognition.google.response.Response;
+import sk.seanstep.hotelprescriptionrecognition.google.data.response.GoogleVisionResponse;
+import sk.seanstep.hotelprescriptionrecognition.google.data.response.Response;
 
 /**
  * Predicate for google vision api response.

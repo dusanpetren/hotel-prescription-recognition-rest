@@ -1,5 +1,5 @@
 
-package sk.seanstep.hotelprescriptionrecognition.google.response;
+package sk.seanstep.hotelprescriptionrecognition.google.data.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,14 +11,11 @@ import lombok.Data;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-		"pages",
-		"text"
+		"responses"
 })
-public class FullTextAnnotation {
+public class GoogleVisionResponse {
 
-	@JsonProperty("pages")
-	private List<Page> pages = null;
-	@JsonProperty("text")
-	private String text;
+	@JsonProperty("responses")
+	private List<Response> responses = null;
 
 }

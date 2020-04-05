@@ -9,9 +9,9 @@ import org.springframework.web.client.RestTemplate;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import sk.seanstep.hotelprescriptionrecognition.google.data.response.GoogleVisionResponse;
 import sk.seanstep.hotelprescriptionrecognition.google.factory.GoogleVisionRequestFactory;
 import sk.seanstep.hotelprescriptionrecognition.google.predicates.GoogleVisionPredicate;
-import sk.seanstep.hotelprescriptionrecognition.google.response.GoogleVisionResponse;
 import static sk.seanstep.hotelprescriptionrecognition.google.predicates.GoogleVisionPredicate.filterResponse;
 
 /**
