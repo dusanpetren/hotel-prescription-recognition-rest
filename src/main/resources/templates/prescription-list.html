@@ -68,38 +68,38 @@
     </div>
 
     <script>
-        function generateBase64fromImage() {
-            function toDataURL(url, callback) {
-                var xhr = new XMLHttpRequest();
-                xhr.onload = function() {
-                    var reader = new FileReader();
-                    reader.onloadend = function() {
-                        callback(reader.result);
-                    }
-                    reader.readAsDataURL(xhr.response);
-                };
-                xhr.open('GET', url);
-                xhr.responseType = 'blob';
-                xhr.send();
-            }
-
-            toDataURL(document.getElementById("handWriting"), function(dataUrl) {
-                console.log('RESULT:', dataUrl);
-                $.ajax({
-                    url: '/prescription/add',
-                    type: 'POST',
-                    body:  JSON.stringify({'imageBase64': dataUrl}),
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (response) {
-
-                        $("p").append(response);
-                    },
-                    error : function(request, textStatus, errorThrown) {
-                        alert(errorThrown);
-                    }
-                });
-            })
+        function toDataURL(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function() {
+                var reader = new FileReader();
+                reader.onloadend = function() {
+                    callback(reader.result);
+                }
+                reader.readAsDataURL(xhr.response);
+            };
+            xhr.open('GET', url);
+            xhr.responseType = 'blob';
+            xhr.send();
         }
+
+        toDataURL(document.getElementById("handWriting"), function(dataUrl) {
+            console.log('RESULT:', dataUrl);
+            console.log('URL image:', document.getElementById("handWriting"));
+            $.ajax({
+                url: '/prescription/add',
+                type: 'POST',
+                body:  JSON.stringify({'imageBase64': dataUrl}),
+                contentType: 'application/json',
+                success: function (response) {
+                    console.log("responese from duski" + response);
+                    $("p").append(response);
+                },
+                error : function(request, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        })
+
     </script>
 
 </div>
