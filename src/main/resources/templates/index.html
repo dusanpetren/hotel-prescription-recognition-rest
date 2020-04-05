@@ -34,10 +34,19 @@
                 <button class="btn btn-primary text-center">Join</button>
             </form>
         </div>
+        <label for="single">Single input (settings in data attributes: no audio, regexp to match URLs):</label>
+        <input id="single" type="text" size="50">
         <button type="button" class="qrcode-reader" id="openreader-single"
                 data-qrr-target="#single"
                 data-qrr-audio-feedback="false"
                 data-qrr-qrcode-regexp="^https?:\/\/">Read QRCode</button>
+        <br>
+        <br>
+        <label for="single">Single input (rebound click, depending on target input's content):</label>
+        <input id="single2" type="text" size="50">
+        <button type="button" id="openreader-single2"
+                data-qrr-target="#single2"
+                data-qrr-audio-feedback="true">Read or follow QRCode</button>
         <br>
         <br>
     </div>
