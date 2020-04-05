@@ -81,7 +81,18 @@
             }
 
             toDataURL(document.getElementById("handWriting"), function(dataUrl) {
-                console.log('RESULT:', dataUrl)
+                console.log('RESULT:', dataUrl);
+                $.ajax({
+                    url: '/prescription/add',
+                    type: 'POST',
+                    body:  JSON.stringify({'imageBase64': dataUrl}),
+                    success: function (response) {
+                        $("p").append(response);
+                    },
+                    error : function(request, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
             })
         }
     </script>
