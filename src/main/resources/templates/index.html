@@ -46,7 +46,7 @@
                 multiple: true,
                 skipDuplicates: false,
                 callback: function (codes) {
-                    redirectToGeneratedId(codes);
+                    window.location.href = "/web/code/" + codes;
                 }
             });
         });
