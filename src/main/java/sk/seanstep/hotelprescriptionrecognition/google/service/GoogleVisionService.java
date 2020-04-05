@@ -1,4 +1,4 @@
-package sk.seanstep.hotelprescriptionrecognition.google.api;
+package sk.seanstep.hotelprescriptionrecognition.google.service;
 
 public interface GoogleVisionService {
 

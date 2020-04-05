@@ -1,4 +1,4 @@
-package sk.seanstep.hotelprescriptionrecognition.google.api;
+package sk.seanstep.hotelprescriptionrecognition.google.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
