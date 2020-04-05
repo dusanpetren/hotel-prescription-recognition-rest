@@ -94,7 +94,9 @@
             const file = document.querySelector('input[type=file]').files[0];
             const reader = new FileReader();
             var src = reader.result;
-            base64 = base64.replace("data:image/png;base64,", "");
+            console.log("base64 length cut: " + base64.length);
+            console.log("base64 index of: " + base64.indexOf("4"));
+            base64 = base64.substring(base64.indexOf("4")+2, base64.length);
             console.log("base64 after cut: " + base64);
                 $.ajax({
                     url: '/prescription/add',
