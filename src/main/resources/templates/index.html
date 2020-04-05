@@ -20,13 +20,12 @@
             <h1 class="mx-auto my-0 text-uppercase">Prescription reader</h1>
             <h2 class="text-white-50 mx-auto mt-2 mb-5">Prescription reader for Pharmacies</h2>
             <form action="" method="get">
-                <button onclick="generateCodeAndGo()" class="btn btn-primary text-center">Generate code</button>
-
+                <button onclick="generateCode()" class="btn btn-primary text-center">Generate code</button>
                 <input type="file" accept="image/*" capture="camera" />
             </form>
 
             <div id="qrcode"></div>
-            <input type="button" id="openreader-btn" value="Scan QRCode"/>
+
 
             <form action="/" th:action="@{/join}" method="get">
                 <input type="text" th:value="${id}" name="id" id="id" class="form-control"
@@ -34,15 +33,6 @@
                 <button class="btn btn-primary text-center">Join</button>
             </form>
         </div>
-        <label for="single">Single input (settings in data attributes: no audio, regexp to match URLs):</label>
-        <input id="single" type="text" size="50">
-        <button type="button" class="qrcode-reader" id="openreader-single"
-                data-qrr-target="#single"
-                data-qrr-audio-feedback="false"
-                data-qrr-qrcode-regexp="^https?:\/\/">Read QRCode</button>
-        <br>
-        <br>
-        <label for="single">Single input (rebound click, depending on target input's content):</label>
         <input id="single2" type="text" size="50">
         <button type="button" id="openreader-single2"
                 data-qrr-target="#single2"
@@ -67,17 +57,5 @@
                 $.qrCodeReader.instance.open.call(this);
             }
         });
-        // $(function() {
-        //     $.qrCodeReader.jsQRpath = "../js/qrcode-reader-master/dist/js/jsQR/jsQR.js";
-        //     $("#openreader-btn").qrCodeReader({
-        //         target: "#target-input",
-        //         audioFeedback: false,
-        //         multiple: true,
-        //         skipDuplicates: false,
-        //         callback: function (codes) {
-        //             window.location.href = "/web/code/" + codes;
-        //         }
-        //     });
-        // });
     </script>
 </body>

@@ -70,6 +70,8 @@ function generateCode() {
         url: '/code/generate',
         type: 'GET',
         success: function (response) {
+            $( "canvas").get( 0 ).remove();
+            $('#qrcode').qrcode(response);
             console.log("generated Id: " + response);
             return response;
         },
