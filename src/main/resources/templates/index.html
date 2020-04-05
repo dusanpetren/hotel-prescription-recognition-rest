@@ -19,6 +19,12 @@
         <div class="mx-auto text-center">
             <h1 class="mx-auto my-0 text-uppercase">Prescription reader</h1>
             <h2 class="text-white-50 mx-auto mt-2 mb-5">Prescription reader for Pharmacies</h2>
+            <div>
+<!--                <input id="single2" type="text" size="50">-->
+                <button type="button" id="openreader-single2"
+                        data-qrr-target="#single2"
+                        data-qrr-audio-feedback="false">Read or follow QRCode</button>
+            </div>
             <form action="" method="get">
                 <button onclick="generateCode()" class="btn btn-primary text-center">Generate code</button>
                 <input type="file" accept="image/*" capture="camera" />
@@ -33,12 +39,7 @@
                 <button onclick="redirectToGeneratedId()" class="btn btn-primary text-center">Join</button>
             </form>
         </div>
-        <input id="single2" type="text" size="50">
-        <button type="button" id="openreader-single2"
-                data-qrr-target="#single2"
-                data-qrr-audio-feedback="true">Read or follow QRCode</button>
-        <br>
-        <br>
+
     </div>
 </header>
     <script src="../js/qrcode-reader-master/dist/js/qrcode-reader.min.js?v=20190604"></script>
