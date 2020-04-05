@@ -34,21 +34,41 @@
                 <button class="btn btn-primary text-center">Join</button>
             </form>
         </div>
+        <button type="button" class="qrcode-reader" id="openreader-single"
+                data-qrr-target="#single"
+                data-qrr-audio-feedback="false"
+                data-qrr-qrcode-regexp="^https?:\/\/">Read QRCode</button>
+        <br>
+        <br>
     </div>
 </header>
     <script src="../js/qrcode-reader-master/dist/js/qrcode-reader.min.js?v=20190604"></script>
     <script>
-        $(function() {
-            $.qrCodeReader.jsQRpath = "../js/qrcode-reader-master/dist/js/jsQR/jsQR.js";
-            $("#openreader-btn").qrCodeReader({
-                target: "#target-input",
-                audioFeedback: false,
-                multiple: true,
-                skipDuplicates: false,
-                callback: function (codes) {
-                    window.location.href = "/web/code/" + codes;
+        // read or follow qrcode depending on the content of the target input
+        $.qrCodeReader.jsQRpath = "../js/qrcode-reader-master/dist/js/jsQR/jsQR.js";
+        $("#openreader-single2").qrCodeReader({callback: function(code) {
+                if (code) {
+                    window.location.href = "/web/code/" + code;
                 }
-            });
+            }}).off("click.qrCodeReader").on("click", function(){
+            var qrcode = $("#single2").val().trim();
+            if (qrcode) {
+                window.location.href = qrcode;
+            } else {
+                $.qrCodeReader.instance.open.call(this);
+            }
         });
+        // $(function() {
+        //     $.qrCodeReader.jsQRpath = "../js/qrcode-reader-master/dist/js/jsQR/jsQR.js";
+        //     $("#openreader-btn").qrCodeReader({
+        //         target: "#target-input",
+        //         audioFeedback: false,
+        //         multiple: true,
+        //         skipDuplicates: false,
+        //         callback: function (codes) {
+        //             window.location.href = "/web/code/" + codes;
+        //         }
+        //     });
+        // });
     </script>
 </body>
