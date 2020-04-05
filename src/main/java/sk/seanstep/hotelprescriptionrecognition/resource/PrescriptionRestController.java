@@ -1,5 +1,6 @@
 package sk.seanstep.hotelprescriptionrecognition.resource;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +43,7 @@ public class PrescriptionRestController {
 		return ResponseEntity.ok(prescriptionRepository.findAllByCode(codeId));
 	}
 
-	@PostMapping("/add")
+	@PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> recognizeImage(@RequestBody AddPrescriptionRequest addPrescriptionRequest) {
 		log.info("Sending image to recognition.");
 		return ResponseEntity.ok(this.googleVisionService.sendToRecognition(addPrescriptionRequest.getImageBase64()));
