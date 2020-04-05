@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
     <script src="../js/main.js"></script>
 </head>
 <body>
@@ -18,9 +18,13 @@
             <h1 class="mx-auto my-0 text-uppercase">Prescription reader</h1>
             <h2 class="text-white-50 mx-auto mt-2 mb-5">Prescription reader for Pharmacies</h2>
             <form action="" method="get">
-                <button onclick="generateCode()" class="btn btn-primary text-center">Generate code</button>
+                <button onclick="generateCodeAndGo()" class="btn btn-primary text-center">Generate code</button>
                 <input type="file" accept="image/*" capture="camera" />
             </form>
+
+<!--            <input id="text" type="text" value="https://hogangnono.com" style="width:80%" /><br />-->
+            <div id="qrcode"></div>
+
 
             <form action="/" th:action="@{/join}" method="get">
                 <input type="text" th:value="${id}" name="id" id="id" class="form-control"

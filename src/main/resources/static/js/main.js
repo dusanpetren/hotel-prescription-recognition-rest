@@ -43,11 +43,40 @@ function disconnect() {
 // function sendName() {
 //     stompClient.send("/api/add/", {}, JSON.stringify({'name': $("#name").val()}));
 // }
+
 function sendName() {
     stompClient.send("/api/add/", $("#name").val());
 }
 
+$( document ).ready(function() {
+    $.ajax({
+        url: '/code/generate',
+        type: 'GET',
+        success: function (response) {
+            console.log("generated Id: " + response);
+            $('#qrcode').qrcode(response);
+        },
+        error: function (request, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+});
+
 function generateCode() {
+    $.ajax({
+        url: '/code/generate',
+        type: 'GET',
+        success: function (response) {
+            console.log("generated Id: " + response);
+            return response;
+        },
+        error : function(request, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+}
+
+function generateCodeAndGo() {
     $.ajax({
         url: '/code/generate',
         type: 'GET',
