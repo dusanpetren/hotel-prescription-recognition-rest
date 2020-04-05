@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import sk.seanstep.hotelprescriptionrecognition.google.api.GoogleVisionService;
+import sk.seanstep.hotelprescriptionrecognition.google.service.GoogleVisionService;
 import sk.seanstep.hotelprescriptionrecognition.model.PrescriptionEntity;
 import sk.seanstep.hotelprescriptionrecognition.repository.PrescriptionRepository;
 import sk.seanstep.hotelprescriptionrecognition.resource.data.request.AddPrescriptionRequest;
