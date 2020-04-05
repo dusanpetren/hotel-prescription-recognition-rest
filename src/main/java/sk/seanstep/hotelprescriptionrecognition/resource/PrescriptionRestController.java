@@ -43,8 +43,8 @@ public class PrescriptionRestController {
 	}
 
 	@PostMapping("/add")
-	public String recognizeImage(@RequestBody AddPrescriptionRequest addPrescriptionRequest) {
+	public ResponseEntity<String> recognizeImage(@RequestBody AddPrescriptionRequest addPrescriptionRequest) {
 		log.info("Sending image to recognition.");
-		return this.googleVisionService.sendToRecognition(addPrescriptionRequest.getImageBase64());
+		return ResponseEntity.ok(this.googleVisionService.sendToRecognition(addPrescriptionRequest.getImageBase64()));
 	}
 }
