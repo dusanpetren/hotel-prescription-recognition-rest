@@ -4,14 +4,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import sk.seanstep.hotelprescriptionrecognition.google.api.GoogleVisionService;
-import sk.seanstep.hotelprescriptionrecognition.google.data.GoogleCodeRequest;
 import sk.seanstep.hotelprescriptionrecognition.model.PrescriptionEntity;
 import sk.seanstep.hotelprescriptionrecognition.repository.PrescriptionRepository;
 
@@ -39,7 +37,7 @@ public class WSMessageController {
 	// TODO: 4/4/2020 petrend Add unique websocket mapping to specific users...@destination variable
 	@MessageMapping("/resolve")
 	@SendTo("/socket/prescription")
-	public ResponseEntity<String> generate(@NotNull @RequestBody GoogleCodeRequest encodedImage) {
+	public ResponseEntity<String> generate(@NotNull String encodedImage) {
 		log.info("Accepted encoded picture.");
 //		googleVisionService.
 		return ResponseEntity.ok("code");
