@@ -12,29 +12,43 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <style>
-    .container-fluid {
+    .bg {
         background: url("../img/eror404.png");
-        background-size: cover;
-        background-repeat: no-repeat;
         height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     h1 {
-        font-size: 120px;
+        font-size: 10vh;
         padding-top: 7vh;
-        padding-left: 45px;
+        padding-left: 3vw;
     }
 
     h2 {
-        font-size: 50px;
-        padding-left: 45px;
+        font-size: 4vh;
+        padding-left: 3vw;
     }
+
+    @media (max-width: 500px) {
+        h1 {
+            text-align: center;
+            font-size: 60px;
+            padding-top: 10vh;
+            padding-left: 3vw;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            padding-left: 3vw;
+        }
+    }
+
 </style>
 <body>
-<div class="error container-fluid text-center">
-    <div class="mx-auto text-center">
-    </div>
-
+<div class="error text-center bg">
     <div class="col-md-12">
         <div class="text-left mx-auto my-0 text-uppercase">
             <h1>¯\_(ツ)_/¯</h1>
