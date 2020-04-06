@@ -24,7 +24,7 @@ function initializeAndSubscripeWebSocket() {
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function (frame) {
-            stompClient.subscribe('/socket/prescription/' + websocketDestination, function (msFromWS) {
+            stompClient.subscribe('/socket/prescription/' + latestGeneratedCode, function (msFromWS) {
                 resolveMessageFromWebsocket(msFromWS);
             });
         });
