@@ -30,27 +30,16 @@
 </style>
 <body onload="initializeAndSubscripeWebSocketOnMobile()">
 <div class="container p-0 m-0">
-    <div class="col-md-6">
-        <form class="form-inline">
-            <div class="form-group">
-                <label for="name">What is your name?</label>
-                <input type="text" id="name" class="form-control" placeholder="Your name here...">
-                <button onclick="sendName()" class="btn btn-default">Send</button>
-            </div>
-        </form>
-    </div>
     <h3 class="text-center">Generated code: </h3>
     <h4 id="generatedCode">[[${generatedCode}]]</h4>
-    <h4 id="generatedCode2">abcd</h4>
     <div class="container text-center mobile">
         <div>
             <p>Access the camera and scan the prescription
                 <input id="handWriting" onchange="previewFile()" type="file" accept="image/*" capture="camera"/>
                 <img src="" height="200" alt="Image preview...">
-                <button onclick="generateBase64fromImage()">Send picture</button>
+                <img onclick=generateBase64fromImage" src="/img/photo-camera.png" alt="camera" width="200px">
+            <h1 class="display-4">NASKENUJ</h1>
         </div>
-        <img src="/img/photo-camera.png" alt="camera" width="200px">
-        <h1 class="display-4">NASKENUJ</h1>
     </div>
 </div>
 </body>
