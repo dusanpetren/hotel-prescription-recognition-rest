@@ -55,7 +55,7 @@ $(document).ready(function () {
         success: function (response) {
             latestGeneratedCode = response;
             console.log("generated Id: " + latestGeneratedCode);
-            $('#qrcode').qrcode("https://presreco-rest.herokuapp.com/web/code/" + latestGeneratedCode);
+            $('#qrcode').qrcode("https://presreco-rest.herokuapp.com/web/code/`" + latestGeneratedCode);
             var canvas = $('#qrcode canvas');
             connect();
         },
@@ -103,7 +103,6 @@ function generateBase64fromImage() {
 }
 
 function redirectToGeneratedId() {
-    console.log("ggoing to space: " + latestGeneratedCode);
     window.location.href = "/web/code/" + latestGeneratedCode;
 }
 
