@@ -4,9 +4,6 @@ const HTTP_STATUS_OK = "OK";
 var stompClient = null;
 var latestGeneratedCode = null;
 
-var websocketDestination = $('#generatedCode2').text();
-
-
 function initializeAndSubscripeWebSocketOnMobile() {
     console.log("connect with stomp: " + (stompClient != null));
     if (stompClient === null) {
@@ -53,12 +50,13 @@ function disconnect() {
 
 function joinWebSocketSession() {
     console.log("joinWebSocketSession");
+    var websocketDestination = $('#generatedCode2').text();
     stompClient.send("/api/join" + websocketDestination, {}, JSON.stringify({'imageBase64': name}));
 }
 
 function sendName() {
     var name = $("#name").val()
-
+    var websocketDestination = $('#generatedCode2').text();
     stompClient.send("/api/add/" + websocketDestination, {}, JSON.stringify({'imageBase64': name}));
 }
 
