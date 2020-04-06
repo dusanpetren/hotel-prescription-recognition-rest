@@ -4,6 +4,8 @@ const HTTP_STATUS_OK = "OK";
 var stompClient = null;
 var latestGeneratedCode = null;
 
+var base64;
+
 function initializeAndSubscripeWebSocketOnMobile() {
     console.log("connect with stomp: " + (stompClient != null));
     if (stompClient === null) {
@@ -96,32 +98,20 @@ function generateCode() {
     });
 }
 
-function generateBase64fromImage() {
-    function toDataURL(url, callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.onload = function () {
-            var reader = new FileReader();
-            reader.onloadend = function () {
-                callback(reader.result);
-            }
-            reader.readAsDataURL(xhr.response);
-        };
-        xhr.open('GET', url);
-        xhr.responseType = 'blob';
-        xhr.send();
-    }
-
-    toDataURL('../img/hotelHandWriting', function (dataUrl) {
-        console.log('RESULT:', dataUrl)
-    })
-}
-
 function redirectToGeneratedId() {
     window.location.href = "/web/code/" + latestGeneratedCode;
 }
 
 function showGreeting(message) {
-    $("#greetings").append("<tr><td>" + message['body'] + "</td></tr>");
+    $("#resolvedMessage").append("<tr><td>" + message['body'] + "</td></tr>");
+}
+
+
+function generateBase64fromImage() {
+    base64 = base64.substring(base64.indexOf("4") + 2, base64.length);
+    console.log("base64 after cut: " + base64);
+    var websocketDestination = $('#generatedCode').text();
+    stompClient.send("/api/resolve/" + websocketDestination, {}, JSON.stringify({'imageBase64': base64}));
 }
 
 function previewFile() {
@@ -142,6 +132,7 @@ function previewFile() {
         reader.readAsDataURL(file);
     }
 }
+
 
 $(function () {
     $("form").on('submit', function (e) {

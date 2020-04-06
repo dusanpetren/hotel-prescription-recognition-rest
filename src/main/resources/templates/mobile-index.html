@@ -54,26 +54,4 @@
     </div>
 </div>
 </body>
-<script>
-    var base64;
-
-    function generateBase64fromImage() {
-        base64 = base64.substring(base64.indexOf("4") + 2, base64.length);
-        console.log("base64 after cut: " + base64);
-        $.ajax({
-            url: '/prescription/add',
-            type: 'POST',
-            data: JSON.stringify({'imageBase64': base64}),
-            contentType: 'application/json',
-            success: function (response) {
-                $("p").append(response);
-            },
-            error: function (request, textStatus, errorThrown) {
-                alert(errorThrown);
-            }
-        });
-    }
-
-
-</script>
 </html>

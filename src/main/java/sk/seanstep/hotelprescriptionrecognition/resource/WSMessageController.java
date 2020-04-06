@@ -40,9 +40,9 @@ public class WSMessageController {
 		return ResponseEntity.status(HttpStatus.PERMANENT_REDIRECT).body(code.getImageBase64());
 	}
 
-	@MessageMapping(value = "/resolve")
-	@SendTo("/socket/prescription")
-	public String resolve(@Payload AddPrescriptionRequest addPrescriptionRequest) {
+	@MessageMapping(value = "/resolve/{generateCode}")
+	@SendTo("/socket/prescription/{generateCode}")
+	public String resolve(@DestinationVariable String generateCode, @Payload AddPrescriptionRequest addPrescriptionRequest) {
 		log.info("Accepted encoded picture.");
 		return this.googleVisionService.sendToRecognition(addPrescriptionRequest.getImageBase64());
 	}
