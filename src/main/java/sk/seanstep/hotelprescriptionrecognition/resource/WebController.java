@@ -21,6 +21,12 @@ public class WebController {
 		return "index";
 	}
 
+	@GetMapping("/mobile/{code}")
+	public String mobile(@PathVariable String code, Model model) {
+		model.addAttribute("generatedCode", code);
+		return "mobile-index";
+	}
+
 	@GetMapping("/code/{code}")
 	public String codes(@PathVariable String code, Model model) {
 		model.addAttribute("generatedCode", code);

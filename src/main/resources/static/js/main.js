@@ -4,13 +4,23 @@ const HTTP_STATUS_OK = "OK";
 var stompClient = null;
 var latestGeneratedCode = null;
 
-function connect() {
-    console.log("connect with stomp: " + (stompClient != null))
+function initializeAndSubscripeWebSocketOnMobile() {
+    console.log("connect with stomp: " + (stompClient != null));
     if (stompClient === null) {
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function (frame) {
-            console.log('Connected: ' + frame);
+            joinWebSocketSession();
+        });
+    }
+}
+
+function initializeAndSubscripeWebSocket() {
+    console.log("connect with stomp: " + (stompClient != null));
+    if (stompClient === null) {
+        var socket = new SockJS('/ws');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
             stompClient.subscribe('/socket/prescription', function (msFromWS) {
                 resolveMessageFromWebsocket(msFromWS);
             });
@@ -39,7 +49,7 @@ function disconnect() {
 }
 
 function joinWebSocketSession() {
-    //todo send to specific token session
+    console.log("joinWebSocketSession");
     stompClient.send("/api/join", {}, JSON.stringify({'imageBase64': name}));
 }
 
@@ -49,22 +59,21 @@ function sendName() {
     stompClient.send("/api/add", {}, JSON.stringify({'imageBase64': name}));
 }
 
-$(document).ready(function () {
+function startIndex() {
     $.ajax({
         url: '/code/generate',
         type: 'GET',
         success: function (response) {
             latestGeneratedCode = response;
             console.log("generated Id: " + latestGeneratedCode);
-            $('#qrcode').qrcode("https://presreco-rest.herokuapp.com/web/code/`" + latestGeneratedCode);
-            var canvas = $('#qrcode canvas');
-            connect();
+            $('#qrcode').qrcode("https://presreco-rest.herokuapp.com/web/mobile/`" + latestGeneratedCode);
+            initializeAndSubscripeWebSocket()
         },
         error: function (request, textStatus, errorThrown) {
             alert(errorThrown);
         }
     });
-});
+};
 
 function generateCode() {
     $.ajax({
@@ -109,6 +118,25 @@ function redirectToGeneratedId() {
 
 function showGreeting(message) {
     $("#greetings").append("<tr><td>" + message['body'] + "</td></tr>");
+}
+
+function previewFile() {
+    const preview = document.querySelector('img');
+    const file = document.querySelector('input[type=file]').files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener("load", function () {
+        // convert image file to base64 string
+        preview.src = reader.result;
+        base64 = preview.src;
+        console.log("preview.src: " + preview.src);
+        console.log("base64: " + base64);
+    }, false);
+
+    if (file) {
+        console.log("file: " + reader.readAsDataURL(file));
+        reader.readAsDataURL(file);
+    }
 }
 
 $(function () {
