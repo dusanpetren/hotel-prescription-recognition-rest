@@ -2,6 +2,7 @@ package sk.seanstep.hotelprescriptionrecognition.resource;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -24,10 +25,10 @@ public class WSMessageController {
 
 	private GoogleVisionService googleVisionService;
 
-	// TODO: 4/4/2020 petrend Add unique websocket mapping to specific users...
-	@MessageMapping("/add")
-	@SendTo("/socket/prescription")
-	public ResponseEntity<String> add(@Payload AddPrescriptionRequest code) throws Exception {
+	@MessageMapping("/add/{generateCode}")
+	@SendTo("/socket/prescription/{generateCode}")
+	public ResponseEntity<String> add(@DestinationVariable String generateCode, @Payload AddPrescriptionRequest code) throws Exception {
+		log.info("Destination variable is: " + generateCode);
 		log.info("Creating new Prescription with code:" + code);
 		return ResponseEntity.ok(code.getImageBase64());
 	}
@@ -35,7 +36,7 @@ public class WSMessageController {
 	@MessageMapping("/join")
 	@SendTo("/socket/prescription")
 	public ResponseEntity<String> join(@Payload AddPrescriptionRequest code) throws Exception {
-		log.info("Connected to websocket:" + code);
+//		log.info("Joining for code:" + generateCode);
 		return ResponseEntity.status(HttpStatus.PERMANENT_REDIRECT).body(code.getImageBase64());
 	}
 

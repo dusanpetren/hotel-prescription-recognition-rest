@@ -4,6 +4,9 @@ const HTTP_STATUS_OK = "OK";
 var stompClient = null;
 var latestGeneratedCode = null;
 
+var websocketDestination = $('#generatedCode2').text();
+
+
 function initializeAndSubscripeWebSocketOnMobile() {
     console.log("connect with stomp: " + (stompClient != null));
     if (stompClient === null) {
@@ -21,7 +24,7 @@ function initializeAndSubscripeWebSocket() {
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function (frame) {
-            stompClient.subscribe('/socket/prescription', function (msFromWS) {
+            stompClient.subscribe('/socket/prescription/' + websocketDestination, function (msFromWS) {
                 resolveMessageFromWebsocket(msFromWS);
             });
         });
@@ -54,9 +57,9 @@ function joinWebSocketSession() {
 }
 
 function sendName() {
-    //todo send to specific token session
     var name = $("#name").val()
-    stompClient.send("/api/add", {}, JSON.stringify({'imageBase64': name}));
+
+    stompClient.send("/api/add/" + websocketDestination, {}, JSON.stringify({'imageBase64': name}));
 }
 
 function startIndex() {
