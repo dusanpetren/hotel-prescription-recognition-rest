@@ -71,35 +71,12 @@
     <script>
         var base64;
         function generateBase64fromImage() {
-            // function toDataURL(url, callback) {
-            //     var xhr = new XMLHttpRequest();
-            //     xhr.onload = function() {
-            //         var reader = new FileReader();
-            //         reader.onloadend = function() {
-            //             callback(reader.result);
-            //         };
-            //         reader.readAsDataURL(xhr.response);
-            //     };
-            //     xhr.open('GET', url);
-            //     xhr.responseType = 'blob';
-            //     xhr.send();
-            // }
-            //
-            // toDataURL(document.getElementById("handWriting").src, function(dataUrl) {
-            //     var newBase64 = dataUrl.replace("data:text/html;base64,", "");
-            //     console.log('RESULT:', newBase64);
-            //     console.log('element we getting from picc should it be: ', (document.getElementById("handWriting").src));
-            //     console.log('json stringify: ', JSON.stringify({'imageBase64': newBase64}));
-            const preview = document.querySelector('img');
-            const file = document.querySelector('input[type=file]').files[0];
-            const reader = new FileReader();
-            var src = reader.result;
-            base64 = base64.replace("data:image/png;base64,", "");
+            base64 = base64.substring(base64.indexOf("4")+2, base64.length);
             console.log("base64 after cut: " + base64);
                 $.ajax({
                     url: '/prescription/add',
                     type: 'POST',
-                    data: "{\"imageBase64\":\"" + base64 + "\"}", // JSON.stringify({'imageBase64': base64}),
+                    data: JSON.stringify({'imageBase64': base64}),
                     contentType: 'application/json',
                     success: function (response) {
                         $("p").append(response);
