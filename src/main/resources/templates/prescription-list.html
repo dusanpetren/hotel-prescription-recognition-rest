@@ -14,10 +14,8 @@
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
     <script src="/js/main.js"></script>
 </head>
-<body>
-
+<body onload="connect()">
 <div class="container">
-
     <div id="title" class="row m-0">
         <form action="/" th:action="@{/}">
             <button id="return" type="submit" class="btn btn-danger my-2 mr-4">Return</button>
@@ -26,10 +24,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <button onclick="connect()" class="btn btn-default">Connect</button>
-
             <form class="form-inline">
-
                 <div class="form-group">
                     <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
                     </button>
@@ -40,9 +35,12 @@
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
+                    <button onclick="joinWebSocketSession()" class="btn btn-default">JOIN</button>
+
                     <label for="name">What is your name?</label>
                     <input type="text" id="name" class="form-control" placeholder="Your name here...">
                     <button onclick="sendName()" class="btn btn-default">Send</button>
+
                 </div>
             </form>
         </div>
@@ -65,29 +63,30 @@
     </div>
     <div>
         <p>Access the camera and scan the prescription
-            <input id="handWriting" onchange="previewFile()" type="file" accept="image/*" capture="camera" />
+            <input id="handWriting" onchange="previewFile()" type="file" accept="image/*" capture="camera"/>
             <img src="" height="200" alt="Image preview...">
             <button onclick="generateBase64fromImage()">Send picture</button>
     </div>
-
     <script>
         var base64;
+
         function generateBase64fromImage() {
-            base64 = base64.substring(base64.indexOf("4")+2, base64.length);
+            base64 = base64.substring(base64.indexOf("4") + 2, base64.length);
             console.log("base64 after cut: " + base64);
-                $.ajax({
-                    url: '/prescription/add',
-                    type: 'POST',
-                    data: JSON.stringify({'imageBase64': base64}),
-                    contentType: 'application/json',
-                    success: function (response) {
-                        $("p").append(response);
-                    },
-                    error: function (request, textStatus, errorThrown) {
-                        alert(errorThrown);
-                    }
-                });
+            $.ajax({
+                url: '/prescription/add',
+                type: 'POST',
+                data: JSON.stringify({'imageBase64': base64}),
+                contentType: 'application/json',
+                success: function (response) {
+                    $("p").append(response);
+                },
+                error: function (request, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
         }
+
         function previewFile() {
             const preview = document.querySelector('img');
             const file = document.querySelector('input[type=file]').files[0];

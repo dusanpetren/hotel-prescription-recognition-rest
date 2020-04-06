@@ -1,17 +1,16 @@
 package sk.seanstep.hotelprescriptionrecognition.resource;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-
-import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import sk.seanstep.hotelprescriptionrecognition.google.service.GoogleVisionService;
-import sk.seanstep.hotelprescriptionrecognition.model.PrescriptionEntity;
-import sk.seanstep.hotelprescriptionrecognition.repository.PrescriptionRepository;
+import sk.seanstep.hotelprescriptionrecognition.resource.data.request.AddPrescriptionRequest;
 
 /**
  * Websocket controller.
@@ -23,24 +22,28 @@ import sk.seanstep.hotelprescriptionrecognition.repository.PrescriptionRepositor
 @AllArgsConstructor
 public class WSMessageController {
 
-	private PrescriptionRepository prescriptionRepository;
 	private GoogleVisionService googleVisionService;
 
 	// TODO: 4/4/2020 petrend Add unique websocket mapping to specific users...
 	@MessageMapping("/add")
 	@SendTo("/socket/prescription")
-	public PrescriptionEntity add(@NotNull String code) throws Exception {
+	public ResponseEntity<String> add(@Payload AddPrescriptionRequest code) throws Exception {
 		log.info("Creating new Prescription with code:" + code);
-		return prescriptionRepository.save(new PrescriptionEntity(null, code, null, null));
+		return ResponseEntity.ok(code.getImageBase64());
 	}
 
-	// TODO: 4/4/2020 petrend Add unique websocket mapping to specific users...@destination variable
-	@MessageMapping("/resolve")
+	@MessageMapping("/join")
 	@SendTo("/socket/prescription")
-	public ResponseEntity<String> generate(@NotNull String encodedImage) {
+	public ResponseEntity<String> join(@Payload AddPrescriptionRequest code) throws Exception {
+		log.info("Connected to websocket:" + code);
+		return ResponseEntity.status(HttpStatus.PERMANENT_REDIRECT).body(code.getImageBase64());
+	}
+
+	@MessageMapping(value = "/resolve")
+	@SendTo("/socket/prescription")
+	public String resolve(@Payload AddPrescriptionRequest addPrescriptionRequest) {
 		log.info("Accepted encoded picture.");
-//		googleVisionService.
-		return ResponseEntity.ok("code");
+		return this.googleVisionService.sendToRecognition(addPrescriptionRequest.getImageBase64());
 	}
 
 }

@@ -1,36 +1,32 @@
+const HTTP_STATUS_REDIRECT = "PERMANENT_REDIRECT";
+const HTTP_STATUS_OK = "OK";
+
 var stompClient = null;
 var latestGeneratedCode = null;
 
-function setConnected(connected) {
-    $("#connect").prop("disabled", connected);
-    $("#disconnect").prop("disabled", !connected);
-    if (connected) {
-        $("#conversation").show();
-    } else {
-        $("#conversation").hide();
-    }
-    $("#greetings").html("");
-}
-
 function connect() {
-    var socket = new SockJS('/ws');
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
-        setConnected(true);
-        console.log('Connected: ' + frame);
-        stompClient.subscribe('/socket/prescription', function (greeting) {
-            console.log("greeting;" + greeting);
-            showGreeting(greeting.body);
+    if (stompClient === null) {
+        var socket = new SockJS('/ws');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            console.log('Connected: ' + frame);
+            stompClient.subscribe('/socket/prescription', function (msFromWS) {
+                resolveMessageFromWebsocket(msFromWS);
+            });
         });
-    });
+    }
 }
 
-function load() {
-    $.getJSON("/all", function (data) {
-        $.each(data, function (key, val) {
-            $("#greetings").append("<tr><td>" + val.id + "</td></tr>");
-        })
-    })
+function resolveMessageFromWebsocket(messageFromWS) {
+    var webSocketparsedMessage = JSON.parse(messageFromWS.body);
+    var statusCode = webSocketparsedMessage['statusCode'];
+    if (HTTP_STATUS_OK === statusCode) {
+        console.log("OK");
+        showGreeting(webSocketparsedMessage);
+    } else if (HTTP_STATUS_REDIRECT === statusCode) {
+        console.log("Redirected")
+        redirectToGeneratedId()
+    }
 }
 
 function disconnect() {
@@ -41,18 +37,18 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-function sendName() {
-    var name = $("#name").val()
-    console.log("Sending: " + name);
-    stompClient.send("/api/add", {}, JSON.stringify({'name': name}));
+function joinWebSocketSession() {
+    //todo send to specific token session
+    stompClient.send("/api/join", {}, JSON.stringify({'imageBase64': name}));
 }
 
-// function sendName() {
-//     stompClient.send("/api/add/", name);
-// }
+function sendName() {
+    //todo send to specific token session
+    var name = $("#name").val()
+    stompClient.send("/api/add", {}, JSON.stringify({'imageBase64': name}));
+}
 
 $(document).ready(function () {
-
     $.ajax({
         url: '/code/generate',
         type: 'GET',
@@ -61,7 +57,7 @@ $(document).ready(function () {
             console.log("generated Id: " + latestGeneratedCode);
             $('#qrcode').qrcode("https://presreco-rest.herokuapp.com/web/code/" + latestGeneratedCode);
             var canvas = $('#qrcode canvas');
-            console.log(canvas);
+            connect();
         },
         error: function (request, textStatus, errorThrown) {
             alert(errorThrown);
@@ -112,7 +108,7 @@ function redirectToGeneratedId() {
 }
 
 function showGreeting(message) {
-    $("#greetings").append("<tr><td>" + message + "</td></tr>");
+    $("#greetings").append("<tr><td>" + message['body'] + "</td></tr>");
 }
 
 $(function () {
