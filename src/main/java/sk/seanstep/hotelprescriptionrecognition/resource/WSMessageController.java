@@ -33,10 +33,10 @@ public class WSMessageController {
 		return ResponseEntity.ok(code.getImageBase64());
 	}
 
-	@MessageMapping("/join")
-	@SendTo("/socket/prescription")
-	public ResponseEntity<String> join(@Payload AddPrescriptionRequest code) throws Exception {
-//		log.info("Joining for code:" + generateCode);
+	@MessageMapping("/join/{generateCode}")
+	@SendTo("/socket/prescription/{generateCode}")
+	public ResponseEntity<String> join(@DestinationVariable String generateCode, @Payload AddPrescriptionRequest code) throws Exception {
+		log.info("Joining for code:" + generateCode);
 		return ResponseEntity.status(HttpStatus.PERMANENT_REDIRECT).body(code.getImageBase64());
 	}
 
