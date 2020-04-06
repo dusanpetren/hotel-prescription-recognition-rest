@@ -31,6 +31,11 @@
 <body onload="initializeAndSubscripeWebSocketOnMobile()">
 <div class="container text-center mobile">
     <h4 id="generatedCode">[[${generatedCode}]]</h4>
+    <p>Access the camera and scan the prescription
+        <input id="handWriting" onchange="previewFile()" type="file" accept="image/*" capture="camera"/>
+        <img src="" height="200" alt="Image preview...">
+        <img onclick="generateBase64fromImage" src="/img/photo-camera.png" alt="camera" width="200px">
+    <h1 class="display-4">NASKENUJ</h1>
     <input alt="scan image" width="200px" class="m-0 p-0 center-block d-inline" type="image" src="/img/photo-camera.png"
            onchange="generateBase64fromImage()" accept="image/" capture="camera"/>
     <h1 class="display-4">NASKENUJ</h1>
