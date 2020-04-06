@@ -41,15 +41,17 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-// function sendName() {
-//     stompClient.send("/api/add/", {}, JSON.stringify({'name': $("#name").val()}));
-// }
-
 function sendName() {
-    stompClient.send("/api/add/", $("#name").val());
+    var name = $("#name").val()
+    console.log("Sending: " + name);
+    stompClient.send("/api/add", {}, JSON.stringify({'name': name}));
 }
 
-$( document ).ready(function() {
+// function sendName() {
+//     stompClient.send("/api/add/", name);
+// }
+
+$(document).ready(function () {
 
     $.ajax({
         url: '/code/generate',
@@ -57,7 +59,7 @@ $( document ).ready(function() {
         success: function (response) {
             latestGeneratedCode = response;
             console.log("generated Id: " + latestGeneratedCode);
-            $('#qrcode').qrcode("https://presreco-rest.herokuapp.com/web/code/"+ latestGeneratedCode);
+            $('#qrcode').qrcode("https://presreco-rest.herokuapp.com/web/code/" + latestGeneratedCode);
             var canvas = $('#qrcode canvas');
             console.log(canvas);
         },
@@ -73,12 +75,12 @@ function generateCode() {
         type: 'GET',
         success: function (response) {
             latestGeneratedCode = response;
-            $( "canvas").get( 0 ).remove();
-            $('#qrcode').qrcode("https://presreco-rest.herokuapp.com/web/code/"+ latestGeneratedCode);
+            $("canvas").get(0).remove();
+            $('#qrcode').qrcode("https://presreco-rest.herokuapp.com/web/code/" + latestGeneratedCode);
             console.log("generated Id: " + latestGeneratedCode);
             return response;
         },
-        error : function(request, textStatus, errorThrown) {
+        error: function (request, textStatus, errorThrown) {
             alert(errorThrown);
         }
     });
@@ -87,9 +89,9 @@ function generateCode() {
 function generateBase64fromImage() {
     function toDataURL(url, callback) {
         var xhr = new XMLHttpRequest();
-        xhr.onload = function() {
+        xhr.onload = function () {
             var reader = new FileReader();
-            reader.onloadend = function() {
+            reader.onloadend = function () {
                 callback(reader.result);
             }
             reader.readAsDataURL(xhr.response);
@@ -99,7 +101,7 @@ function generateBase64fromImage() {
         xhr.send();
     }
 
-    toDataURL('../img/hotelHandWriting', function(dataUrl) {
+    toDataURL('../img/hotelHandWriting', function (dataUrl) {
         console.log('RESULT:', dataUrl)
     })
 }
