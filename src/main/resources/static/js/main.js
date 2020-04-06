@@ -53,7 +53,7 @@ function disconnect() {
 
 function joinWebSocketSession() {
     console.log("joinWebSocketSession");
-    stompClient.send("/api/join", {}, JSON.stringify({'imageBase64': name}));
+    stompClient.send("/api/join" + websocketDestination, {}, JSON.stringify({'imageBase64': name}));
 }
 
 function sendName() {
