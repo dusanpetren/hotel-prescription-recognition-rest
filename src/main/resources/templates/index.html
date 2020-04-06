@@ -17,19 +17,10 @@
         <div class="mx-auto text-center">
             <h1 class="mx-auto my-0 text-uppercase">Prescription reader</h1>
             <h2 class="text-white-50 mx-auto mt-2 mb-5">Prescription reader for Pharmacies</h2>
-            <div>
-                <input id="single2" type="text" size="10">
-                <button type="button" id="openreader-single2"
-                        data-qrr-target="#single2"
-                        data-qrr-audio-feedback="false">Read or follow QRCode</button>
-            </div>
             <form action="" method="get">
                 <button onclick="generateCode()" class="btn btn-primary text-center">Generate code</button>
             </form>
-
             <div id="qrcode"></div>
-
-
             <form action="/" th:action="@{/join}" method="get">
                 <input type="text" th:value="${id}" name="id" id="id" class="form-control"
                        placeholder="Your name here...">
@@ -39,21 +30,4 @@
 
     </div>
 </header>
-    <script src="../js/qrcode-reader-master/dist/js/qrcode-reader.min.js?v=20190604"></script>
-    <script>
-        // read or follow qrcode depending on the content of the target input
-        $.qrCodeReader.jsQRpath = "../js/qrcode-reader-master/dist/js/jsQR/jsQR.js";
-        $("#openreader-single2").qrCodeReader({callback: function(code) {
-                if (code) {
-                    window.location.href = "/web/code/" + code;
-                }
-            }}).off("click.qrCodeReader").on("click", function(){
-            var qrcode = $("#single2").val().trim();
-            if (qrcode) {
-                window.location.href = qrcode;
-            } else {
-                $.qrCodeReader.instance.open.call(this);
-            }
-        });
-    </script>
 </body>
