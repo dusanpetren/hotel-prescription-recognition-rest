@@ -50,13 +50,13 @@ function disconnect() {
 
 function joinWebSocketSession() {
     console.log("joinWebSocketSession");
-    var websocketDestination = $('#generatedCode2').text();
-    stompClient.send("/api/join" + websocketDestination, {}, JSON.stringify({'imageBase64': name}));
+    var websocketDestination = $('#generatedCode').text();
+    stompClient.send("/api/join/" + websocketDestination, {}, JSON.stringify({'imageBase64': name}));
 }
 
 function sendName() {
     var name = $("#name").val()
-    var websocketDestination = $('#generatedCode2').text();
+    var websocketDestination = $('#generatedCode').text();
     stompClient.send("/api/add/" + websocketDestination, {}, JSON.stringify({'imageBase64': name}));
 }
 
