@@ -22,7 +22,8 @@ function initializeAndSubscripeWebSocket() {
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function (frame) {
             var generatedCodeFromId = $('#generatedCode').text();
-            var websocketDestination = generatedCodeFromId !== null ? generatedCodeFromId : latestGeneratedCode;
+            var websocketDestination = generatedCodeFromId === "" ? latestGeneratedCode : generatedCodeFromId;
+            console.log(websocketDestination)
             stompClient.subscribe('/socket/prescription/' + websocketDestination, function (msFromWS) {
                 resolveMessageFromWebsocket(msFromWS);
             });
