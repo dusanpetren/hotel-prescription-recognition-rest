@@ -102,7 +102,7 @@ function generateBase64fromImage() {
 }
 
 function redirectToGeneratedId() {
-    window.location.href = latestGeneratedCode;
+    window.location.href = "/web/code/" + latestGeneratedCode;
 }
 
 function showGreeting(message) {
