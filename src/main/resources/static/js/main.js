@@ -41,12 +41,10 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-// function sendName() {
-//     stompClient.send("/api/add/", {}, JSON.stringify({'name': $("#name").val()}));
-// }
-
 function sendName() {
-    stompClient.send("/api/add/", $("#name").val());
+    var name = $("#name").val()
+    console.log("Sending: " + name);
+    stompClient.send("/api/add", {}, JSON.stringify({'name': name}));
 }
 
 $(document).ready(function () {
@@ -81,6 +79,26 @@ function generateCode() {
             alert(errorThrown);
         }
     });
+}
+
+function generateBase64fromImage() {
+    function toDataURL(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                callback(reader.result);
+            }
+            reader.readAsDataURL(xhr.response);
+        };
+        xhr.open('GET', url);
+        xhr.responseType = 'blob';
+        xhr.send();
+    }
+
+    toDataURL('../img/hotelHandWriting', function (dataUrl) {
+        console.log('RESULT:', dataUrl)
+    })
 }
 
 function redirectToGeneratedId() {
