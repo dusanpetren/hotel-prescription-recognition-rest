@@ -4,33 +4,30 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
-    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
-    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
     <script src="/js/main.js"></script>
 </head>
 <body>
 <header>
-    <div class="container d-flex h-100 align-items-center">
-        <div class="mx-auto text-center">
-            <h1 class="mx-auto my-0 text-uppercase">Prescription reader</h1>
-            <h2 class="text-white-50 mx-auto mt-2 mb-5">Prescription reader for Pharmacies</h2>
-            <form action="" method="get">
-                <button onclick="generateCode()" class="btn btn-primary text-center">Generate new code</button>
-            </form>
-            <div id="qrcode"></div>
-            <form action="/" th:action="@{/join}" method="get">
-                <input type="text" th:value="${id}" name="id" id="id" class="form-control"
-                       placeholder="Your name here...">
-                <button onclick="redirectToGeneratedId()" class="btn btn-primary text-center">Join</button>
-            </form>
+    <div class="container">
+        <h1 class="brand">Hotel Id Prescription</h1>
+        <div class="wrapper">
+            <div class="company-info">
+                <h3>Hotel <span>Id Prescription</span></h3>
+                <ul>
+                    <li>1. Open the google lens</li>
+                    <li>2. Scan the code from your phone</li>
+                    <li>3. Point your phone to this screen to capture the code</li>
+                </ul>
+            </div>
+            <div class="contact">
+                <div id="qrcode"></div>
+            </div>
         </div>
-
     </div>
 </header>
 </body>
