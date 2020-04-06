@@ -5,6 +5,7 @@ var stompClient = null;
 var latestGeneratedCode = null;
 
 function connect() {
+    console.log("connect with stomp: " + (stompClient != null))
     if (stompClient === null) {
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
