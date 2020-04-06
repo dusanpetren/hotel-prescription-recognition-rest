@@ -23,7 +23,7 @@ function initializeAndSubscripeWebSocket() {
         stompClient.connect({}, function (frame) {
             var generatedCodeFromId = $('#generatedCode').text();
             var websocketDestination = generatedCodeFromId === "" ? latestGeneratedCode : generatedCodeFromId;
-            console.log(websocketDestination)
+            console.log(websocketDestination);
             stompClient.subscribe('/socket/prescription/' + websocketDestination, function (msFromWS) {
                 resolveMessageFromWebsocket(msFromWS);
             });
@@ -70,7 +70,7 @@ function startIndex() {
         success: function (response) {
             latestGeneratedCode = response;
             console.log("generated Id: " + latestGeneratedCode);
-            $('#qrcode').qrcode("https://presreco-rest.herokuapp.com/web/mobile/`" + latestGeneratedCode);
+            $('#qrcode').qrcode("https://presreco-rest.herokuapp.com/web/mobile/" + latestGeneratedCode);
             initializeAndSubscripeWebSocket()
         },
         error: function (request, textStatus, errorThrown) {
