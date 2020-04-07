@@ -30,6 +30,7 @@
 </style>
 <body onload="initializeAndSubscripeWebSocketOnMobile()">
 <div class="container text-center mobile">
+    <h4 id="generatedCode">[[${generatedCode}]]</h4>
     <input id="handWriting" onchange="previewFile()" type="file" accept="image/*" capture="camera"/>
     <img src="" height="200" alt="Image preview...">
     <button onclick="generateBase64fromImage()">Send picture</button>
