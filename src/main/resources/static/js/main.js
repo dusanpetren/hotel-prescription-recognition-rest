@@ -114,7 +114,7 @@ function startIndex() {
             alert(errorThrown);
         }
     });
-};
+}
 
 function redirectToGeneratedId() {
     window.location.href = "/web/code/" + latestGeneratedCode;
