@@ -28,7 +28,7 @@ public class PrescriptionRestController {
 
 	@PostMapping(value = "/resolve", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> recognizeImage(@RequestBody ResolveImageRequest resolveImage) {
-		log.info("Sending image to recognition.");
+		log.info("Sending image to recognition. Body: " + resolveImage.getImageBase64());
 		return ResponseEntity.ok(this.googleVisionService.sendToRecognition(resolveImage.getImageBase64()));
 	}
 }
