@@ -30,9 +30,10 @@
 </style>
 <body onload="initializeAndSubscripeWebSocketOnMobile()">
 <div class="container text-center mobile">
-        <input alt="scan image" width="200px" class="m-0 p-0 center-block d-inline" type="file"
-               src="/img/photo-camera.png"
-               onchange="generateBase64fromImage()" accept="image/" capture="camera"/>
+    <input id="handWriting" onchange="previewFile()" type="file" accept="image/*" capture="camera"/>
+    <img src="" height="200" alt="Image preview...">
+    <button onclick="generateBase64fromImage()">Send picture</button>
+    <img> alt="scan image" width="200px" src="/img/photo-camera.png"</img>
     <h1 class="display-4">NASKENUJ</h1>
 </div>
 </body>
