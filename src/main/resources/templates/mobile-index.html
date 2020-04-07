@@ -6,15 +6,14 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>-->
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/mobile.css" rel="stylesheet">
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
@@ -22,29 +21,21 @@
     <script src="/js/main.js"></script>
     <title>Naskenuj</title>
 </head>
-<style>
-    body {
-        background-color: #e7f3ff;
-    }
-
-    .mobile {
-        color: black;
-        bottom: 16%;
-        position: fixed;
-    }
-</style>
 <body onload="initializeAndSubscripeWebSocketOnMobile()">
-<div class="container text-center mobile">
-    <h4 id="generatedCode">[[${generatedCode}]]</h4>
-    <img src="" height="200" alt="Image preview...">
-    <button onclick="generateBase64fromImage()">Poslat</button>
-    <div class="image-upload">
-        <label for="handWriting">
-            <img alt="scan image" width="200px" src="/img/photo-camera.png"/>
-        </label>
-        <input id="handWriting" onchange="previewFile()" type="file" accept="image/*" capture="camera">
+<header>
+    <div class="container">
+        <div class="wrapper">
+            <div class="contact">
+                    <h4 id="generatedCode" class="hide">[[${generatedCode}]]</h4>
+                    <div class="image-upload">
+                    </div>
+                <label for="handWriting">
+                    <img alt="scan image" width="200px" src="/img/photo-camera.png"/>
+                </label>
+                <input id="handWriting" onchange="previewFile()" class="hide" type="file" accept="image/*" capture="camera">
+            </div>
+        </div>
     </div>
-    <h1 class="display-4">NASKENUJ</h1>
-</div>
+</header>
 </body>
 </html>

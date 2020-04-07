@@ -97,7 +97,7 @@ function startIndex() {
             alert(errorThrown);
         }
     });
-};
+}
 
 function redirectToGeneratedId() {
     window.location.href = "/web/code/" + latestGeneratedCode;
@@ -135,6 +135,7 @@ function previewFile() {
     if (file) {
         console.log("file: " + reader.readAsDataURL(file));
         reader.readAsDataURL(file);
+        generateBase64fromImage();
     }
 }
 
