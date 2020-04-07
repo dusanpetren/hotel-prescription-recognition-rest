@@ -49,7 +49,7 @@ public class GoogleVisionServiceImpl implements GoogleVisionService {
 				googleVisionRequestFactory.construct(imageBase64),
 				GoogleVisionResponse.class);
 
-		String resolvedTextFromImage = response.getStatusCode().is2xxSuccessful() ? "" : filterResponse(response.getBody(), GoogleVisionPredicate.isCorrectResponse());
+		String resolvedTextFromImage = response.getBody() != null ? "" : filterResponse(response.getBody(), GoogleVisionPredicate.isCorrectResponse());
 		log.info("Resolved text from an image: " + resolvedTextFromImage);
 		return resolvedTextFromImage;
 	}

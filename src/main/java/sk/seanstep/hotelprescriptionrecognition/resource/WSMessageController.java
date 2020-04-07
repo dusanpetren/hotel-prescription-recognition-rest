@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import sk.seanstep.hotelprescriptionrecognition.google.service.GoogleVisionService;
 import sk.seanstep.hotelprescriptionrecognition.resource.data.request.AddPrescriptionRequest;
 
 /**
@@ -22,8 +21,6 @@ import sk.seanstep.hotelprescriptionrecognition.resource.data.request.AddPrescri
 @Controller
 @AllArgsConstructor
 public class WSMessageController {
-
-	private GoogleVisionService googleVisionService;
 
 	@MessageMapping("/add/{generateCode}")
 	@SendTo("/socket/prescription/{generateCode}")
