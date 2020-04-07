@@ -152,6 +152,7 @@ function previewFile() {
     if (file) {
         console.log("file: " + reader.readAsDataURL(file));
         reader.readAsDataURL(file);
+        previewFile();
     }
 }
 

@@ -1,3 +1,73 @@
-.image-upload>input {
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to right, #92bde7, #2db852);
+    color: #485e74;
+    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 1em;
+}
+
+.container {
+    margin-top: 10em;
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+}
+
+ul {
+    color: black;
+    font-size: 1.2em;
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.brand {
+    text-align: center;
+}
+
+span {
+    color: #fff;
+}
+
+.wrapper {
+    box-shadow: 0 0 20px 0 rgba(72, 94, 116, 0.7);
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.wrapper > * {
+    padding: 2em;
+}
+
+.company-info {
+    background: #c9e6ff;
+}
+
+.company-info h3, .company-info ul {
+    text-align: center;
+    margin: 0 0 1rem 0;
+}
+
+.contact {
+    background: #f9feff;
+    text-align: center;
+}
+
+li {
+    margin: 10px 0;
+}
+
+h1 {
+    font-size: x-large;
+}
+
+
+.hide {
     display: none;
 }
+

@@ -14,37 +14,39 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/mobile.css" rel="stylesheet">
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
     <script src="/js/main.js"></script>
-    <title>Naskenuj</title>
+    <title>Find writing</title>
 </head>
-<style>
-    body {
-        background-color: #e7f3ff;
-    }
-
-    .mobile {
-        color: black;
-        bottom: 16%;
-        position: fixed;
-    }
-</style>
 <body onload="initializeAndSubscripeWebSocketOnMobile()">
-<div class="container text-center mobile">
-    <h4 id="generatedCode">[[${generatedCode}]]</h4>
-    <img src="" height="200" alt="Image preview...">
-    <button onclick="generateBase64fromImage()">Send picture</button>
-    <div class="image-upload">
-        <label for="handWriting">
-            <img alt="scan image" width="200px" src="/img/photo-camera.png"/>
-        </label>
-        <input id="handWriting" onchange="previewFile()" type="file" accept="image/*" capture="camera">
+<header>
+    <div class="container">
+        <div class="wrapper">
+            <div class="company-info">
+                <h1>Prescription Recognition</h1>
+                <ul>
+                    <li>1. Tap the photo icon</li>
+                    <li>2. Take a picture of the text you would like decrypt</li>
+                    <li>3. ???</li>
+                    <li>4. Profit</li>
+                </ul>
+            </div>
+            <div class="contact">
+                <div class="container text-center mobile">
+                    <h4 id="generatedCode" class="hide">[[${generatedCode}]]</h4>
+                    <div class="image-upload">
+                    </div>
+                </div>
+                <label for="handWriting">
+                    <img alt="scan image" width="200px" src="/img/photo-camera.png"/>
+                </label>
+                <input id="handWriting" class="hide" onchange="previewFile()" type="file" accept="image/*" capture="camera" ">
+            </div>
+        </div>
     </div>
-    <h1 class="display-4">NASKENUJ</h1>
-</div>
+</header>
 </body>
 </html>
