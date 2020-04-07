@@ -18,7 +18,7 @@ function initializeAndSubscripeWebSocketOnMobile() {
 }
 
 function initializeAndSubscripeWebSocket() {
-    connectedAlert();
+    // connectedAlert();
     console.log("connect with stomp: " + (stompClient != null));
     if (stompClient === null) {
         var socket = new SockJS('/ws');
