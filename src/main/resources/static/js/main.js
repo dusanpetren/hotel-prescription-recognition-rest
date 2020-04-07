@@ -59,13 +59,6 @@ function joinWebSocketSession() {
     var websocketDestination = $('#generatedCode').text();
     stompClient.send("/api/join/" + websocketDestination, {}, JSON.stringify({'imageBase64': name}));
 }
-
-function sendName() {
-    var name = $("#name").val()
-    var websocketDestination = $('#generatedCode').text();
-    stompClient.send("/api/add/" + websocketDestination, {}, JSON.stringify({'imageBase64': name}));
-}
-
 function sendImageBase64ToServer(base64) {
     poslanoAlert();
     $.ajax({
@@ -135,7 +128,6 @@ function previewFile() {
     if (file) {
         console.log("file: " + reader.readAsDataURL(file));
         reader.readAsDataURL(file);
-        generateBase64fromImage();
     }
 }
 
