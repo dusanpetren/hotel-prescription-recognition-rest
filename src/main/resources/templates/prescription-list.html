@@ -17,6 +17,8 @@
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
     <script src="/js/main.js"></script>
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+    <title>Prescription Recognition</title>
 </head>
 <body onload="initializeAndSubscripeWebSocket()">
 <div class="container">
@@ -28,7 +30,7 @@
             <table id="conversation" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Načítaný recept</th>
+                    <th>Načtené kódy</th>
                 </tr>
                 </thead>
                 <tbody id="resolvedMessage">
