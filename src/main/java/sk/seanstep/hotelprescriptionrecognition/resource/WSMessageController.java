@@ -44,7 +44,7 @@ public class WSMessageController {
 	@SendTo("/socket/prescription/{generateCode}")
 	public ResponseEntity<String> resolve(@DestinationVariable String generateCode, @Payload AddPrescriptionRequest addPrescriptionRequest) {
 		log.info("Accepted encoded picture.");
-		return ResponseEntity.ok(this.googleVisionService.sendToRecognition(addPrescriptionRequest.getImageBase64()));
+		return ResponseEntity.ok(addPrescriptionRequest.getImageBase64());
 	}
 
 }

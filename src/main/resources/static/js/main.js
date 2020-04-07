@@ -65,6 +65,22 @@ function sendName() {
     stompClient.send("/api/add/" + websocketDestination, {}, JSON.stringify({'imageBase64': name}));
 }
 
+function sendImageBase64ToServer(base64) {
+    $.ajax({
+        url: '/prescription/resolve',
+        type: 'POST',
+        data: JSON.stringify({'imageBase64': base64}),
+        contentType: 'application/json',
+        success: function (response) {
+            resolvedMessageFromGoogle = response;
+            sendToWebSocket(resolvedMessageFromGoogle);
+        },
+        error: function (request, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+}
+
 function startIndex() {
     $.ajax({
         url: '/code/generate',
@@ -110,8 +126,12 @@ function showGreeting(message) {
 function generateBase64fromImage() {
     base64 = base64.substring(base64.indexOf("4") + 2, base64.length);
     console.log("base64 after cut: " + base64);
+    sendImageBase64ToServer(base64);
+}
+
+function sendToWebSocket(message) {
     var websocketDestination = $('#generatedCode').text();
-    stompClient.send("/api/resolve/" + websocketDestination, {}, JSON.stringify({'imageBase64': base64}));
+    stompClient.send("/api/add/" + websocketDestination, {}, JSON.stringify({'imageBase64': message}));
 }
 
 function previewFile() {
