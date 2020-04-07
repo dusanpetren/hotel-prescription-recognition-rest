@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<!--    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>-->
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
@@ -25,15 +25,6 @@
 <header>
     <div class="container">
         <div class="wrapper">
-            <div class="company-info">
-                <h1>Prescription Recognition</h1>
-                <ul>
-                    <li>1. Tap the photo icon</li>
-                    <li>2. Take a picture of the text you would like decrypt</li>
-                    <li>3. ???</li>
-                    <li>4. Profit</li>
-                </ul>
-            </div>
             <div class="contact">
                 <div class="container text-center mobile">
                     <h4 id="generatedCode" class="hide">[[${generatedCode}]]</h4>
@@ -43,7 +34,7 @@
                 <label for="handWriting">
                     <img alt="scan image" width="200px" src="/img/photo-camera.png"/>
                 </label>
-                <input id="handWriting" class="hide" onchange="previewFile()" type="file" accept="image/*" capture="camera">
+                <input id="handWriting" onchange="previewFile()" class="hide" type="file" accept="image/*" capture="camera">
             </div>
         </div>
     </div>
