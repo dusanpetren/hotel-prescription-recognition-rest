@@ -61,12 +61,14 @@ function joinWebSocketSession() {
 }
 function sendImageBase64ToServer(base64) {
     poslanoAlert();
+    console.log("Base64is to sendImageBase64ToServer: " + base64);
     $.ajax({
         url: '/prescription/resolve',
         type: 'POST',
         data: JSON.stringify({'imageBase64': base64}),
         contentType: 'application/json',
         success: function (response) {
+            console.log("Response from google is: " + response);
             resolvedMessageFromGoogle = response;
             sendToWebSocket(resolvedMessageFromGoogle);
         },
