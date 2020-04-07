@@ -60,7 +60,7 @@ function joinWebSocketSession() {
     stompClient.send("/api/join/" + websocketDestination, {}, JSON.stringify({'imageBase64': name}));
 }
 function sendImageBase64ToServer(base64) {
-    // poslanoAlert();
+    poslanoAlert();
     console.log("Base64is to sendImageBase64ToServer: " + base64);
     $.ajax({
         url: '/prescription/resolve',
