@@ -104,6 +104,7 @@ function showGreeting(message) {
 
 
 function generateBase64fromImage() {
+    document.querySelector('img').src =  "/img/photo-camera.png";
     base64 = base64.substring(base64.indexOf("4") + 2, base64.length);
     console.log("base64 after cut: " + base64);
     sendImageBase64ToServer(base64);
