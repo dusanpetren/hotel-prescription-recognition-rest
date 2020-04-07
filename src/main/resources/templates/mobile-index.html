@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/mobile.css" rel="stylesheet">
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
@@ -31,10 +32,14 @@
 <body onload="initializeAndSubscripeWebSocketOnMobile()">
 <div class="container text-center mobile">
     <h4 id="generatedCode">[[${generatedCode}]]</h4>
-    <input id="handWriting" onchange="previewFile()" type="file" accept="image/*" capture="camera"/>
     <img src="" height="200" alt="Image preview...">
     <button onclick="generateBase64fromImage()">Send picture</button>
-    <img alt="scan image" width="200px" src="/img/photo-camera.png"/>
+    <div class="image-upload">
+        <label for="handWriting">
+            <img alt="scan image" width="200px" src="/img/photo-camera.png"/>
+        </label>
+        <input id="handWriting" onchange="previewFile()" type="file" accept="image/*" capture="camera">
+    </div>
     <h1 class="display-4">NASKENUJ</h1>
 </div>
 </body>
