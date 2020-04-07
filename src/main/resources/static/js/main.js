@@ -18,7 +18,7 @@ function initializeAndSubscripeWebSocketOnMobile() {
 }
 
 function initializeAndSubscripeWebSocket() {
-    // connectedAlert();
+    connectedAlert();
     console.log("connect with stomp: " + (stompClient != null));
     if (stompClient === null) {
         var socket = new SockJS('/ws');
@@ -60,7 +60,7 @@ function joinWebSocketSession() {
     stompClient.send("/api/join/" + websocketDestination, {}, JSON.stringify({'imageBase64': name}));
 }
 function sendImageBase64ToServer(base64) {
-    // poslanoAlert();
+    poslanoAlert();
     console.log("Base64is to sendImageBase64ToServer: " + base64);
     $.ajax({
         url: '/prescription/resolve',
@@ -131,6 +131,7 @@ function previewFile() {
     if (file) {
         console.log("file: " + reader.readAsDataURL(file));
         reader.readAsDataURL(file);
+        generateBase64fromImage();
     }
 }
 
