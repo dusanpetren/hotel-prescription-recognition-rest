@@ -67,30 +67,13 @@ function sendName() {
 }
 
 function sendImageBase64ToServer(base64) {
+    poslanoAlert();
     $.ajax({
         url: '/prescription/resolve',
         type: 'POST',
         data: JSON.stringify({'imageBase64': base64}),
         contentType: 'application/json',
         success: function (response) {
-            toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-top-full-width",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            };
-            toastr.success('Poslano!');
             resolvedMessageFromGoogle = response;
             sendToWebSocket(resolvedMessageFromGoogle);
         },
@@ -155,6 +138,25 @@ function previewFile() {
     }
 }
 
+$(function () {
+    $("form").on('submit', function (e) {
+        e.preventDefault();
+    });
+    $("#load").click(function () {
+        load();
+    });
+    $("#connect").click(function () {
+        connect();
+    });
+    $("#disconnect").click(function () {
+        disconnect();
+    });
+    $("#send").click(function () {
+        sendName();
+    });
+});
+
+// <------- Alerts -------->
 function connectedAlert() {
     toastr.options = {
         "closeButton": false,
@@ -176,21 +178,23 @@ function connectedAlert() {
     toastr.success('Připojeno!');
 }
 
-
-$(function () {
-    $("form").on('submit', function (e) {
-        e.preventDefault();
-    });
-    $("#load").click(function () {
-        load();
-    });
-    $("#connect").click(function () {
-        connect();
-    });
-    $("#disconnect").click(function () {
-        disconnect();
-    });
-    $("#send").click(function () {
-        sendName();
-    });
-});
+function poslanoAlert() {
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-full-width",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+    toastr.success('Poslano!');
+}
