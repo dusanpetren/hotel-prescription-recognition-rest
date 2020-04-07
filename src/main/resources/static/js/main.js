@@ -126,12 +126,13 @@ function previewFile() {
         base64 = preview.src;
         console.log("preview.src: " + preview.src);
         console.log("base64: " + base64);
+        generateBase64fromImage();
     }, false);
 
     if (file) {
         console.log("file: " + reader.readAsDataURL(file));
         reader.readAsDataURL(file);
-        generateBase64fromImage();
+
     }
 }
 
