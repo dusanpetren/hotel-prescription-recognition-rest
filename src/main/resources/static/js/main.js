@@ -85,7 +85,7 @@ function startIndex() {
         success: function (response) {
             latestGeneratedCode = response;
             console.log("generated Id: " + latestGeneratedCode);
-            $('#qrcode').qrcode("https://presreco-rest.herokuapp.com/web/mobile/" + latestGeneratedCode);
+            $('#qrcode').qrcode("https://nactime.herokuapp.com//web/mobile/" + latestGeneratedCode);
             initializeAndSubscripeWebSocket()
         },
         error: function (request, textStatus, errorThrown) {
