@@ -97,23 +97,6 @@ function startIndex() {
     });
 };
 
-function generateCode() {
-    $.ajax({
-        url: '/code/generate',
-        type: 'GET',
-        success: function (response) {
-            latestGeneratedCode = response;
-            $("canvas").get(0).remove();
-            $('#qrcode').qrcode("https://presreco-rest.herokuapp.com/web/code/" + latestGeneratedCode);
-            console.log("generated Id: " + latestGeneratedCode);
-            return response;
-        },
-        error: function (request, textStatus, errorThrown) {
-            alert(errorThrown);
-        }
-    });
-}
-
 function redirectToGeneratedId() {
     window.location.href = "/web/code/" + latestGeneratedCode;
 }
@@ -131,7 +114,7 @@ function generateBase64fromImage() {
 
 function sendToWebSocket(message) {
     var websocketDestination = $('#generatedCode').text();
-    stompClient.send("/api/add/" + websocketDestination, {}, JSON.stringify({'imageBase64': message}));
+    stompClient.send("/api/add/" + websocketDestination, {}, JSON.stringify({'message': message}));
 }
 
 function previewFile() {

@@ -28,23 +28,14 @@ public class WSMessageController {
 	@MessageMapping("/add/{generateCode}")
 	@SendTo("/socket/prescription/{generateCode}")
 	public ResponseEntity<String> add(@DestinationVariable String generateCode, @Payload AddPrescriptionRequest code) throws Exception {
-		log.info("Destination variable is: " + generateCode);
-		log.info("Creating new Prescription with code:" + code);
-		return ResponseEntity.ok(code.getImageBase64());
+		log.info("Sending message: " + code.getMessage() + " to the destination socket: " + generateCode);
+		return ResponseEntity.ok(code.getMessage());
 	}
 
 	@MessageMapping("/join/{generateCode}")
 	@SendTo("/socket/prescription/{generateCode}")
-	public ResponseEntity<String> join(@DestinationVariable String generateCode, @Payload AddPrescriptionRequest code) throws Exception {
+	public ResponseEntity<String> join(@DestinationVariable String generateCode) throws Exception {
 		log.info("Joining for code:" + generateCode);
-		return ResponseEntity.status(HttpStatus.PERMANENT_REDIRECT).body(code.getImageBase64());
+		return ResponseEntity.status(HttpStatus.PERMANENT_REDIRECT).body("");
 	}
-
-	@MessageMapping(value = "/resolve/{generateCode}")
-	@SendTo("/socket/prescription/{generateCode}")
-	public ResponseEntity<String> resolve(@DestinationVariable String generateCode, @Payload AddPrescriptionRequest addPrescriptionRequest) {
-		log.info("Accepted encoded picture.");
-		return ResponseEntity.ok(addPrescriptionRequest.getImageBase64());
-	}
-
 }
