@@ -21,6 +21,7 @@ public class GoogleVisionPredicate {
 	                                    Predicate<Response> predicate) {
 		return response.getResponses()
 				.stream().filter(predicate)
-				.findFirst().map(e -> e.getFullTextAnnotation().getText()).orElse("");
+				.findFirst().map(e -> e.getFullTextAnnotation().getText())
+				.orElse("");
 	}
 }
