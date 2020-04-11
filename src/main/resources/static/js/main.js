@@ -62,14 +62,12 @@ function joinWebSocketSession() {
 }
 function sendImageBase64ToServer(base64) {
     poslanoAlert();
-    console.log("Base64is to sendImageBase64ToServer: " + base64);
     $.ajax({
         url: '/prescription/resolve',
         type: 'POST',
         data: JSON.stringify({'imageBase64': base64}),
         contentType: 'application/json',
         success: function (response) {
-            console.log("Response from google is: " + response);
             resolvedMessageFromGoogle = response;
             sendToWebSocket(resolvedMessageFromGoogle);
         },
@@ -85,7 +83,6 @@ function startIndex() {
         type: 'GET',
         success: function (response) {
             latestGeneratedCode = response;
-            console.log("generated Id: " + latestGeneratedCode);
             $('#qrcode').qrcode("https://presreco-rest.herokuapp.com/web/mobile/" + latestGeneratedCode);
             initializeAndSubscripeWebSocket()
         },
@@ -119,7 +116,6 @@ function checkForText(message) {
 function generateBase64fromImage() {
     document.querySelector('img').src =  "/img/photo-camera.png";
     base64 = base64.substring(base64.indexOf("4") + 2, base64.length);
-    console.log("base64 after cut: " + base64);
     sendImageBase64ToServer(base64);
 }
 
@@ -137,13 +133,10 @@ function previewFile() {
         // convert image file to base64 string
         preview.src = reader.result;
         base64 = preview.src;
-        console.log("preview.src: " + preview.src);
-        console.log("base64: " + base64);
         generateBase64fromImage();
     }, false);
 
     if (file) {
-        console.log("file: " + reader.readAsDataURL(file));
         reader.readAsDataURL(file);
     }
 }
