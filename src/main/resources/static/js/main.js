@@ -100,11 +100,21 @@ function redirectToGeneratedId() {
 }
 
 function showGreeting(message) {
-    $("#resolvedMessage").append("<tr><td>" + message['body'] + "</td></tr>");
-    $("#generateNumber").append("<tr><td>" + generovanePC + "<tr><td>");
+    if(checkForText(message))
+    {
+        $("#resolvedMessage").append("<tr><td>" + message['body'] + "</td></tr>");
+
+    } else {
+        $("#resolvedMessage").append("<tr><td>" + "Omlouváme se, ale na fotce se nám nepovedlo rozpoznat žádnej text" + "</td></tr>");
+    }
+    $("#generateNumber").append("<tr><td>" + generovanePC + "</td></tr>");
     generovanePC++;
+
 }
 
+function checkForText(message) {
+    return message['body'].length > 0;
+}
 
 function generateBase64fromImage() {
     document.querySelector('img').src =  "/img/photo-camera.png";
