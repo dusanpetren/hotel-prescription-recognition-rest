@@ -5,6 +5,7 @@ var stompClient = null;
 var latestGeneratedCode = null;
 
 var base64;
+var generovanePC = 1;
 
 function initializeAndSubscripeWebSocketOnMobile() {
     console.log("connect with stomp: " + (stompClient != null));
@@ -100,6 +101,8 @@ function redirectToGeneratedId() {
 
 function showGreeting(message) {
     $("#resolvedMessage").append("<tr><td>" + message['body'] + "</td></tr>");
+    $("#generateNumber").append("<tr><td>" + generovanePC + "<tr><td>");
+    generovanePC++;
 }
 
 
@@ -132,7 +135,6 @@ function previewFile() {
     if (file) {
         console.log("file: " + reader.readAsDataURL(file));
         reader.readAsDataURL(file);
-
     }
 }
 
