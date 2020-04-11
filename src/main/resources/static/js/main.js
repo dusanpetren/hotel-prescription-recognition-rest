@@ -5,6 +5,7 @@ var stompClient = null;
 var latestGeneratedCode = null;
 
 var base64;
+var generovanePC = 1;
 
 function initializeAndSubscripeWebSocketOnMobile() {
     console.log("connect with stomp: " + (stompClient != null));
@@ -100,6 +101,8 @@ function redirectToGeneratedId() {
 
 function showGreeting(message) {
     $("#resolvedMessage").append("<tr><td>" + message['body'] + "</td></tr>");
+    $("#generateNumber").append("<tr><td>" + generovanePC + "<tr><td>");
+    generovanePC++;
 }
 
 
@@ -126,12 +129,12 @@ function previewFile() {
         base64 = preview.src;
         console.log("preview.src: " + preview.src);
         console.log("base64: " + base64);
+        generateBase64fromImage();
     }, false);
 
     if (file) {
         console.log("file: " + reader.readAsDataURL(file));
         reader.readAsDataURL(file);
-        generateBase64fromImage();
     }
 }
 
