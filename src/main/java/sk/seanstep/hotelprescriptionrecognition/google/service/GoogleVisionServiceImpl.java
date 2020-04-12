@@ -63,7 +63,8 @@ public class GoogleVisionServiceImpl implements GoogleVisionService {
 	private String extractCodeFromText(String resolvedText) {
 		if (resolvedText.contains(ERECEPT_TEXT) || resolvedText.contains(IDENTIFIKATOR_TEXT)) {
 			return resolvedText.trim()
-					.substring(0, 11);
+					.substring(0, 11)
+					.toUpperCase();
 		} else {
 			return resolvedText;
 		}
