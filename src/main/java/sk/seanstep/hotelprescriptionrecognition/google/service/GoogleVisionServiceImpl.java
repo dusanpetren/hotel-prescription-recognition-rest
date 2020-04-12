@@ -27,6 +27,8 @@ public class GoogleVisionServiceImpl implements GoogleVisionService {
 
 	private static final String TARGET_URL = "https://vision.googleapis.com/v1/images:annotate";
 	private static final String URL_QUERY = "?key=";
+	private static final String ERECEPT_TEXT = "eRecept";
+	private static final String IDENTIFIKATOR_TEXT = "identifikator";
 
 	@Value("${google.api.key}")
 	private String googleApiKey;
@@ -49,8 +51,21 @@ public class GoogleVisionServiceImpl implements GoogleVisionService {
 				googleVisionRequestFactory.construct(imageBase64),
 				GoogleVisionResponse.class);
 
-		String resolvedTextFromImage = response.getBody() == null ? "" : filterResponse(response.getBody(), GoogleVisionPredicate.isCorrectResponse());
-		log.info("Resolved text from an image: " + resolvedTextFromImage);
-		return resolvedTextFromImage;
+		if (response.getBody() == null) {
+			return "";
+		} else {
+			String resolvedTextFromImage = filterResponse(response.getBody(), GoogleVisionPredicate.isCorrectResponse());
+			log.info("Resolved text from an image: " + resolvedTextFromImage);
+			return extractCodeFromText(resolvedTextFromImage);
+		}
+	}
+
+	private String extractCodeFromText(String resolvedText) {
+		if (resolvedText.contains(ERECEPT_TEXT) || resolvedText.contains(IDENTIFIKATOR_TEXT)) {
+			return resolvedText.trim()
+					.substring(0, 11);
+		} else {
+			return resolvedText;
+		}
 	}
 }
